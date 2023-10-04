@@ -27,4 +27,4 @@ Specific topics include estimating networks using multi-locus nuclear data, eval
 The link to a google form used for registration can be found on the [Registration page]({{site.baseurl}}/registration).
 
 ### Preparing for the Workshop
-Information on installation steps that are needed to be performed prior to the workshop are on the [Pre-workshop page]({{site.baseurl}}/pre-workshop). All analyses will be carried out on institutional compute clusters at the host organizations.
+Information on installation steps that are needed to be performed prior to the workshop are on the [Pre-workshop page]({{site.baseurl}}/pre-workshop). All analyses will be facilitated by institutional compute clusters at the host organizations.

@@ -4,12 +4,12 @@ title: Schedule
 permalink: /schedule/
 ---
 
-The precise room numbers and schedule is in preparation, but the important dates are:<br>
+Room numbers for Kew are now determined. The schedule will remain the same for Edinburgh aside from the days and rooms. Otherwise, the important dates are:<br>
 * Royal Botanic Gardens Kew (8-10 November)
 * Royal Botanic Gardens Edinburgh (14-16 November)
 
 
-Participation in the workshop is free, but participants must bring their own laptop. Some basic software and libraries should be installed in advance to use the time effectively, with instructions posted [here]({{site.baseurl}}/pre-workshop). Most of the work will occur on institutional clusters to remove barriers to participation, with precise instructions TBD.
+Participation in the workshop is free, but participants must bring their own laptop. Some basic software and libraries should be installed in advance to use the time effectively, with instructions posted [here]({{site.baseurl}}/pre-workshop). We are working with institutions to use their clusters to remove barriers to participation, but individuals can work from their own computers if preferred.
 
 <!--
 |Time       |Module                                             |Slides                                                              | 
@@ -26,15 +26,16 @@ Participation in the workshop is free, but participants must bring their own lap
 |-----------|---------------------------------------------------|--------------------------------------------------------------------|
 -->
 
-|Time       |Module                                             |Slides                                                              | 
-|-----------|---------------------------------------------------|--------------------------------------------------------------------|
-|Day 1 Morning      | The Multispecies Coalescent and Gene Flow         |  TBD                                                               |
-|Day 1 Afternoon      | Full-Likelihood Analyses with BPP         |  TBD                                                               |
-|Day 2 Morning      | Quartets, Concordance Factors, and Network Identifiability         |  TBD                                                               |
-|Day 2 Afternoon      | Maximum Pseudo-Likelihood Analyses with PhyloNetworks         |  TBD                                                               |
-|Day 3 Morning      | Participant Data Analysis         |  TBD                                                               |
-|Day 3 Afternoon      | Participant Data Analysis and Discussion         |  TBD                                                               |
-|-----------|---------------------------------------------------|--------------------------------------------------------------------|
-
+| Day   | Time           | Room                      | Module                                                            | Slides                                                             | 
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
+|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line Primer (Optional)                                    |                                                                    |
+|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               |
+|8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               |
+|9 Nov | 9:00-12:00      | Jodrell - Bennett Room    | Model Selection and Hypothesis Testing                            |  TBD                                                               |
+|9 Nov | 13:00-18:00     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               |
+|10 Nov| 9:00-12:00      | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               |
+|10 Nov| 13:00-17:00     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               |
+|10 Nov| 18:00           | TBD                       | Go to the pub                                                     |  NA                                                                |
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
                                                  
 Links to lecture material and exercises will be updated here before the workshop.

@@ -4,7 +4,7 @@ title: Registration
 permalink: /registration/
 ---
 
-Registration is currently open and can be completed through a google form. Registration is free.
+Registration at RBG Kew is now close due to room capacity limitations. Registration at RBG Edinburgh is still open and can be completed through a google form. Registration is free.
 
 [**&rarr; Register Here!**](https://docs.google.com/forms/d/e/1FAIpQLSc37B9Gdikv1dAxY-HrbORx5e-T0IQZ_nyWxDAMj-ClRgKWdg/viewform?usp=sf_link)
 

@@ -6,7 +6,9 @@ permalink: /pre-workshop/
 
 Prior to the workshop, participants are expected to install the software below. Prior experience using command line programs and something like R can be helpful but is not necessary for participation. A primer will be delivered at the beginning of the workshop and material will be delivered at an introductory level to keep material accessible.
 
-George will hold an office hour in advance of the respective workshops to help troubleshoot problems (TBD). Keep in mind that if you are using an institution-owned machine, you may need to reach out to your IT team in advance for software installs.
+George will hold office hours on 2 and 3 Nov to help troubleshoot problems in person at Kew and via Teams. A link will be sent to registered participants.
+
+Keep in mind that if you are using an institution-owned machine, you may need to reach out to your IT team in advance for software installs.
 
 
 ## Some common prerequisites
@@ -21,8 +23,8 @@ If you do not already, please install the following:
     - [BBEdit](https://www.barebones.com/products/bbedit/) for Mac
     - [VSCode](https://code.visualstudio.com/download) for all systems but with some extra features for coding
 - if you are on a Windows computer, you will need a way to log into the institutional cluster.
-	- I highly recommend [gitbash] ()
-	- A tried and true alternative is [putty] ()
+	- I highly recommend [gitbash](https://gitforwindows.org/)
+	- A tried and true alternative is [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 	
 
 ## Networks from Gene Trees in PhyloNetworks
