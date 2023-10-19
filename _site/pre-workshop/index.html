@@ -31,7 +31,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/RBG-Networks/about/">About</a><a class="page-link" href="/RBG-Networks/registration/">Registration</a><a class="page-link" href="/RBG-Networks/people/">People</a><a class="page-link" href="/RBG-Networks/schedule/">Schedule</a><a class="page-link" href="/RBG-Networks/pre-workshop/">Pre-workshop</a><a class="page-link" href="/RBG-Networks/conduct/">Code of Conduct</a></div>
+        <div class="trigger"><a class="page-link" href="/RBG-Networks/about/">About</a><a class="page-link" href="/RBG-Networks/registration/">Registration</a><a class="page-link" href="/RBG-Networks/people/">People</a><a class="page-link" href="/RBG-Networks/schedule/">Schedule</a><a class="page-link" href="/RBG-Networks/pre-workshop/">Pre-workshop</a><a class="page-link" href="/RBG-Networks/reading/">Reading</a><a class="page-link" href="/RBG-Networks/conduct/">Code of Conduct</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -45,7 +45,19 @@
   <div class="post-content">
     <p>Prior to the workshop, participants are expected to install the software below. Prior experience using command line programs and something like R can be helpful but is not necessary for participation. A primer will be delivered at the beginning of the workshop and material will be delivered at an introductory level to keep material accessible.</p>
 
-<p>George will hold an office hour in advance of the respective workshops to help troubleshoot problems (TBD). Keep in mind that if you are using an institution-owned machine, you may need to reach out to your IT team in advance for software installs.</p>
+<p>George will hold office hours on 2 and 3 Nov from 15:00-17:00 to help troubleshoot pre-workshop problems in person at Kew and via Teams. A link has been sent to registered participants via email.</p>
+
+<p>Keep in mind that if you are using an institution-owned machine, you may need to reach out to your IT team in advance for software installs.</p>
+
+<h2 id="hpc-access-for-the-workshop">HPC Access for the Workshop</h2>
+
+<p>The workshop is supported by the <a href="https://www.cropdiversity.ac.uk/">UK Crop Diversity Cluster</a>. In order to access the cluster, you will need to create an account <a href="https://help.cropdiversity.ac.uk/user-accounts.html">here</a>.</p>
+
+<p>The form will ask you institutional affiliation. If you are attending the workshop but not associated with one of the listed institutions, please clarify that you are attending the workshop on phylogenetic networks.</p>
+
+<p>After successful registration, you will need to follow instructions on generating an ssh key and sharing the public key with the cluster admin <a href="https://help.cropdiversity.ac.uk/ssh-terminal-keys.html">here</a>.</p>
+
+<p>It is best to register and have your ssh key in place as early as possible so as to not overwhelm the admin, but George is available during the office hours if any of the registration and key instructions are unclear.</p>
 
 <h2 id="some-common-prerequisites">Some common prerequisites</h2>
 
@@ -67,13 +79,24 @@
   </li>
   <li>if you are on a Windows computer, you will need a way to log into the institutional cluster.
     <ul>
-      <li>I highly recommend [gitbash] ()</li>
-      <li>A tried and true alternative is [putty] ()</li>
+      <li>I highly recommend <a href="https://gitforwindows.org/">gitbash</a></li>
+      <li>A tried and true alternative is <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a></li>
     </ul>
   </li>
 </ul>
 
-<h2 id="networks-from-gene-trees-in-phylonetworks">Networks from Gene Trees in PhyloNetworks</h2>
+<h2 id="bpp">BPP</h2>
+
+<p>We will run the latest version of BPP on the cluster, which can be accessed with the <a href="https://github.com/bpp/bpp/releases/tag/v4.6.2">release page of the BPP GitHub</a>.</p>
+
+<p>However, we will also use R and some R packages to analyze results from BPP that will require installation on your own computer. After R is installed we will install the <a href="https://github.com/dosreislab/bppr">bppr R package</a>. The package can be installed after launching R or Rstudio by</p>
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"devtools"</span><span class="p">)</span><span class="w">
+</span><span class="n">devtools</span><span class="o">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">"dosreislab/bppr"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You should also install <a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.2">Tracer</a>, which is an interactive program used for evaluating the quality of Bayesian posterior samples.</p>
+
+<h2 id="phylonetworks">PhyloNetworks</h2>
 <p>The bulk of analysis will be carried out on the cluster, but the visualization steps are best carried out on your own computer. This will require installing Julia and the associated packages for PhyloNetworks:</p>
 <ul>
   <li><a href="https://julialang.org">Download</a> julia and
@@ -92,17 +115,6 @@ follow instructions to install julia</li>
     <p>and close julia with <code class="language-plaintext highlighter-rouge">exit()</code>.</p>
   </li>
 </ul>
-
-<h2 id="hypothesis-testing-in-bpp">Hypothesis Testing in BPP</h2>
-
-<p>We will run the latest version of BPP on the cluster, which can be accessed with the <a href="https://github.com/bpp/bpp/releases/tag/v4.6.2">release page of the BPP GitHub</a>.</p>
-
-<p>However, we will also use R and some R packages to analyze results from BPP that will require installation on your own computer. After R is installed we will install the <a href="https://github.com/dosreislab/bppr">bppr R package</a>. The package can be installed after launching R or Rstudio by</p>
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"devtools"</span><span class="p">)</span><span class="w">
-</span><span class="n">devtools</span><span class="o">::</span><span class="n">install_github</span><span class="p">(</span><span class="s2">"dosreislab/bppr"</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-
-<p>You should also install <a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.2">Tracer</a>, which is an interactive program used for evaluating the quality of Bayesian posterior samples.</p>
 
   </div>
 

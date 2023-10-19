@@ -26,16 +26,17 @@ Participation in the workshop is free, but participants must bring their own lap
 |-----------|---------------------------------------------------|--------------------------------------------------------------------|
 -->
 
-| Day   | Time           | Room                      | Module                                                            | Slides                                                             | 
-|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
-|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line Primer (Optional)                                    |                                                                    |
-|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               |
-|8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               |
-|9 Nov | 9:00-12:00      | Jodrell - Bennett Room    | Model Selection and Hypothesis Testing                            |  TBD                                                               |
-|9 Nov | 13:00-18:00     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               |
-|10 Nov| 9:00-12:00      | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               |
-|10 Nov| 13:00-17:00     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               |
-|10 Nov| 18:00           | TBD                       | Go to the pub                                                     |  NA                                                                |
-|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|
+| Day   | Time           | Room                      | Module                                                            | Slides                                                             |  Instructor         |
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
+|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line Primer (Optional)                                    |  TBD                                                               | George Tiley        |
+|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
+|8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|9 Nov | 9:00-12:00      | Jodrell - Bennett Room    | Model Selection and Hypothesis Testing                            |  TBD                                                               | George Tiley        |
+|9 Nov | 13:00-18:00     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|10 Nov| 9:00-12:00      | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|10 Nov| 13:00-17:00     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|10 Nov| 18:00           | TBD                       | Go to the pub                                                     |  NA                                                                | All                 |
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
                                                  
+There are tea breaks at 10:30 and 15:00 every day with [vegan conchas](https://veganpalsusto.co.uk/). Participants are responsible for their own lunch but we will break at the Orangery every day at 12:00.
 Links to lecture material and exercises will be updated here before the workshop.

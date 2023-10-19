@@ -35,6 +35,7 @@ header_pages:
    - people.md
    - schedule.md
    - pre-workshop.md
+   - reading.md
    - conduct.md
 
 # Build settings
