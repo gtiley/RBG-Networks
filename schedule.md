@@ -9,7 +9,7 @@ Room numbers for Kew are now determined. The schedule will remain the same for E
 * Royal Botanic Gardens Edinburgh (14-16 November)
 
 
-Participation in the workshop is free, but participants must bring their own laptop. Some basic software and libraries should be installed in advance to use the time effectively, with instructions posted [here]({{site.baseurl}}/pre-workshop). We are working with institutions to use their clusters to remove barriers to participation, but individuals can work from their own computers if preferred.
+Participation in the workshop is free, but participants must bring their own laptop. Some basic software and libraries should be installed in advance to use the time effectively, with instructions posted [here]({{site.baseurl}}/pre-workshop). We are working with the UK Crop Diversity HPC to remove potential barriers to participation, but individuals can work from their own computers if preferred.
 
 <!--
 |Time       |Module                                             |Slides                                                              | 
@@ -26,17 +26,69 @@ Participation in the workshop is free, but participants must bring their own lap
 |-----------|---------------------------------------------------|--------------------------------------------------------------------|
 -->
 
-| Day   | Time           | Room                      | Module                                                            | Slides                                                             |  Instructor         |
+Links to lecture material and exercises will be updated here before the workshop.
+
+
+## RBG Kew
+| Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
-|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line Primer (Optional)                                    |  TBD                                                               | George Tiley        |
-|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
+|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
+|8 Nov | 9:00-10:15      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
+|8 Nov | 10:15-10:45     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
+|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent with Gene Flow        |  TBD                                                               | Ziheng Yang         |
+|8 Nov | 12:00-13:00     | The Orangery              | Lunch                                                             |                                                                    |                     |
 |8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
-|9 Nov | 9:00-12:00      | Jodrell - Bennett Room    | Model Selection and Hypothesis Testing                            |  TBD                                                               | George Tiley        |
-|9 Nov | 13:00-18:00     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
-|10 Nov| 9:00-12:00      | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
-|10 Nov| 13:00-17:00     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
-|10 Nov| 18:00           | TBD                       | Go to the pub                                                     |  NA                                                                | All                 |
+|8 Nov | 15:00-15:30     | Herbarium - Tea Room      | Break                                                             |                                                                    |                     |
+|8 Nov | 15:30-17:30     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|      |                 |                           |                                                                   |                                                                    |                     |
+|9 Nov | 9:00-10:15      | Jodrell - Bennett Room    | Hypothesis Testing and Model Selection with Networks              |  TBD                                                               | George Tiley        |
+|9 Nov | 10:15-10:45     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
+|9 Nov | 10:45-12:00     | Jodrell - Bennett Room    | Bayes Factors and Approximate Methods                             |  TBD                                                               | George Tiley        |
+|8 Nov | 12:00-13:00     | The Orangery              | Lunch                                                             |                                                                    |                     |
+|9 Nov | 13:00-15:00     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|9 Nov | 15:00-15:30     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
+|9 Nov | 15:30-17:30     | Jodrell - Bennett Room    | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|      |                 |                           |                                                                   |                                                                    |                     |
+|10 Nov| 9:00-10:15      | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|10 Nov| 10:15-10:45     | Herbarium - Tea Room      | Break                                                             |                                                                    |                     |
+|10 Nov| 10:45-12:00     | Herbarium - Training Room | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|10 Nov| 12:00-13:00     | The Orangery              | Lunch                                                             |                                                                    |                     |
+|10 Nov| 13:00-15:00     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|10 Nov| 15:00-15:30     | Herbarium - Tea Room      | Break                                                             |                                                                    |                     |
+|10 Nov| 15:30-17:30     | Herbarium - Training Room | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|10 Nov| 18:00           | TBD                       | Go to the pub                                                     |                                                                    | All                 |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
                                                  
-There are tea breaks at 10:30 and 15:00 every day with [vegan conchas](https://veganpalsusto.co.uk/). Participants are responsible for their own lunch but we will break at the Orangery every day at 12:00.
-Links to lecture material and exercises will be updated here before the workshop.
+There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas](https://veganpalsusto.co.uk/). Coffee is provided by sift and participants can list their orders [here](https://docs.google.com/spreadsheets/d/1w2Og74QtfEfOF7GWEoRr36mL7OqaVrOEcp7emSrLZZo/edit?usp=drive_link). Participants are responsible for their own lunch but we will break at the Orangery every day at 12:00.
+
+## RBG Edinburgh
+| Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
+|14 Nov| 8:00-9:00       | Conference Room           | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
+|14 Nov| 9:00-10:15      | Conference Room           | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
+|14 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
+|14 Nov| 9:00-12:00      | Conference Room           | Introduction to the Multispecies Coalescent with Gene Flow        |  TBD                                                               | Ziheng Yang         |
+|14 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
+|14 Nov| 13:00-18:00     | Conference Room           | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|14 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
+|14 Nov| 15:30-17:30     | Conference Room           | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|      |                 |                           |                                                                   |                                                                    |                     |
+|15 Nov| 9:00-10:15      | Conference Room           | Hypothesis Testing and Model Selection with Networks              |  TBD                                                               | George Tiley        |
+|15 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
+|15 Nov| 10:45-12:00     | Conference Room           | Bayes Factors and Approximate Methods                             |  TBD                                                               | George Tiley        |
+|15 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
+|15 Nov| 13:00-15:00     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|15 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
+|15 Nov| 15:30-17:30     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|      |                 |                           |                                                                   |                                                                    |                     |
+|16 Nov| 9:00-10:15      | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|16 Nov| 10:15-10:45     | Lecture Theatre           | Break                                                             |                                                                    |                     |
+|16 Nov| 10:45-12:00     | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|16 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
+|16 Nov| 13:00-15:00     | Conference Room           | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|16 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
+|16 Nov| 15:30-17:30     | Conference Room           | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|16 Nov| 18:00           | TBD                       | Go to the pub                                                     |                                                                    | All                 |
+|------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
+
+Coffee and snacks are provided at breaks. Participants are responsible for their own lunch.
