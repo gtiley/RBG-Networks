@@ -30,6 +30,7 @@ Links to lecture material and exercises will be updated here before the workshop
 
 
 ## RBG Kew
+
 | Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 |8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
@@ -62,6 +63,7 @@ Links to lecture material and exercises will be updated here before the workshop
 There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas](https://veganpalsusto.co.uk/). Coffee is provided by sift and participants can list their orders [here](https://docs.google.com/spreadsheets/d/1w2Og74QtfEfOF7GWEoRr36mL7OqaVrOEcp7emSrLZZo/edit?usp=drive_link). Participants are responsible for their own lunch but we will break at the Orangery every day at 12:00.
 
 ## RBG Edinburgh
+
 | Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 |14 Nov| 8:00-9:00       | Conference Room           | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
