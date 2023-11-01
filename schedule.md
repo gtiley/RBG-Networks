@@ -33,7 +33,7 @@ Links to lecture material and exercises will be updated here before the workshop
 
 | Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
-|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
+|8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line and HPC Primer (Optional)                            |  [GitHub page]({{site.baseurl}}/activities/introduction/)          | George Tiley        |
 |8 Nov | 9:00-10:15      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
 |8 Nov | 10:15-10:45     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
 |8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent with Gene Flow        |  TBD                                                               | Ziheng Yang         |
