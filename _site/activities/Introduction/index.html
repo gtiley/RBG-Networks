@@ -3,20 +3,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Introductory Material and Background | Methodological Advances in Reticulate Evolution</title>
+<title>Getting started | Methodological Advances in Reticulate Evolution</title>
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="Introductory Material and Background" />
+<meta property="og:title" content="Getting started" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Methodological advances in reticulate evolution" />
 <meta property="og:description" content="Methodological advances in reticulate evolution" />
-<link rel="canonical" href="http://localhost:4000/RBG-Networks/activities/Introduction/" />
-<meta property="og:url" content="http://localhost:4000/RBG-Networks/activities/Introduction/" />
+<link rel="canonical" href="http://localhost:4000/RBG-Networks/activities/introduction/" />
+<meta property="og:url" content="http://localhost:4000/RBG-Networks/activities/introduction/" />
 <meta property="og:site_name" content="Methodological Advances in Reticulate Evolution" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Introductory Material and Background" />
+<meta property="twitter:title" content="Getting started" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Methodological advances in reticulate evolution","headline":"Introductory Material and Background","url":"http://localhost:4000/RBG-Networks/activities/Introduction/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Methodological advances in reticulate evolution","headline":"Getting started","url":"http://localhost:4000/RBG-Networks/activities/introduction/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/RBG-Networks/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/RBG-Networks/feed.xml" title="Methodological Advances in Reticulate Evolution" /></head>
 <body><header class="site-header" role="banner">
@@ -39,16 +39,298 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Introductory Material and Background</h1>
+    <h1 class="post-title">Getting started</h1>
   </header>
 
   <div class="post-content">
-    <h2 id="plants-and-reticulate-evolution">Plants and Reticulate Evolution</h2>
+    <p>The examples used throughout the workshop have been designed to run quickly. Phylogenomic investigations in practice are often much larger and may necessitate the use of computing clusters. If this is your first time using a cluster or command line software, some activities are provided below to help you get the most out of the computational exercises. There are four goals this morning:</p>
+<ol>
+  <li>Log on to the UK Crop Diversity HPC</li>
+  <li>Perform basic UNIX operations</li>
+  <li>Run jobs interactively and with submission scripts</li>
+  <li>Understand responsible use of the HPC</li>
+</ol>
 
-<h2 id="discovering-reticulate-evolution-from-sequence-data">Discovering Reticulate Evolution from Sequence Data</h2>
+<p>Some or all of this may be very familiar. These short instructions are about getting everybody on the same page for advancing later in the workshop. Please take time to help each other throughout the workshop too.</p>
 
-<h2 id="drawing-and-interpreting-networks">Drawing and Interpreting Networks</h2>
+<p>A few necessary downloads for your local computer are covered on the <a href="/RBG-Networks/pre-workshop">pre-workshop page</a>, but the cluster has all of the necessary software for the analyses ready for you.</p>
 
+<h2 id="log-on-to-and-navigate-the-uk-crop-diversity-hpc">Log on to and navigate the UK Crop Diversity HPC</h2>
+<p>Now you will log into the cluster. Then you will copy materials from a shared folder to your user directory (on the cluster). All analyses will happen in your <em>scratch</em> space. The below code block assume you have followed the <a href="https://help.cropdiversity.ac.uk/ssh.html#key-authentication-with-2fa">key authentication instructions</a> for the HPC.</p>
+
+<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">YOUR_USER_NAME</code> is <em>your</em> user name for the HPC</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh gruffalo
+cd /mnt/shared/scratch/YOUR_USER_NAME
+pwd
+ls
+mkdir network_workshop
+cd network_workshop
+pwd
+ls
+cp -r /mnt/shared/scratch/gtiley/introduction .
+cd introduction
+pwd
+ls
+</code></pre></div></div>
+<p>Several things happened here. We <em>change directory</em> with <code class="language-plaintext highlighter-rouge">cd</code>  and check the location of the <em>present working directory</em> with <code class="language-plaintext highlighter-rouge">pwd</code>. We then <em>list</em> files with <code class="language-plaintext highlighter-rouge">ls</code>. These are UNIX commands that will help us navigate the cluster. We then <em>make directory</em> named network_workshop with <code class="language-plaintext highlighter-rouge">mkdir</code>. It is important to avoid special characters and spaces when naming directories and files on the cluster.</p>
+
+<p>Notice that a file exists in the <code class="language-plaintext highlighter-rouge">introduction</code> directory. Let’s have a look and edit it with <code class="language-plaintext highlighter-rouge">nano hello.txt</code>. You can only use your arrow keys to move around but you can edit the text directly on the cluster without any graphical software. This is a handy skill to have. These text editors, one of which is <code class="language-plaintext highlighter-rouge">nano</code>, have various capabilities, but the important things to remember are <code class="language-plaintext highlighter-rouge">control + o</code> to save and <code class="language-plaintext highlighter-rouge">control + x</code> to exit. Try to open, edit, and save changes to <code class="language-plaintext highlighter-rouge">hello.txt</code> before closing. You can admire your changes to the file with the command <code class="language-plaintext highlighter-rouge">less</code>. Try <code class="language-plaintext highlighter-rouge">less hello.txt</code> to view the file contents but you will exit <code class="language-plaintext highlighter-rouge">less</code> with <code class="language-plaintext highlighter-rouge">control + z</code>.</p>
+
+<p>Try making a new file called <code class="language-plaintext highlighter-rouge">my_dreams.txt</code>. Do do this, go <code class="language-plaintext highlighter-rouge">nano my_dreams.txt</code>. You could type something like “I am an expert on phylogenetic networks!” and save and exit.</p>
+
+<p>Let’s combine two files with the <em>concatenate</em> function <code class="language-plaintext highlighter-rouge">cat</code>. Go <code class="language-plaintext highlighter-rouge">cat hello.txt my_dreams.txt &gt; the_truth.txt</code>. Now look at the new file you create!</p>
+
+<p>Now you can access the cluster, move files around, and create or edit them.</p>
+
+<h2 id="moving-files-between-your-computer-and-the-cluster">Moving files between your computer and the cluster</h2>
+<p>At some point, you will want to move files from your user directory on the cluster to your computer or the other way around. There are some graphical programs that might be helpful, but we will work directly from the command line using the <em>secure copy protocol</em> function <code class="language-plaintext highlighter-rouge">scp</code>. First, log off of the cluster and go back to your own computer with <code class="language-plaintext highlighter-rouge">exit</code>.</p>
+
+<p>Let’s start by downloading materials for today. Open your command-line prompt (using git-bash or similar for Windows users). I suggest making a folder to organize all of the class materials in one place.</p>
+
+<p><strong>Note:</strong> These steps are happening on your computer and not the cluster</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+<span class="nb">ls
+mkdir </span>network_workshop
+<span class="nb">cd </span>network_workshop
+<span class="nb">pwd
+</span>scp <span class="nt">-r</span> gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction <span class="nb">.</span>
+<span class="nb">ls</span>
+</code></pre></div></div>
+<p>The entire <code class="language-plaintext highlighter-rouge">introduction</code> directory should now be on <em>your</em> computer. The entire directory was download because we used the <code class="language-plaintext highlighter-rouge">-r</code> <em>flag</em> which means <em>recursively</em>. Feel free to create new files or change existing ones with your graphical text editor (BBedit, NotePad++, or otherwise) and save them. You can put files from your computer to the cluster with <code class="language-plaintext highlighter-rouge">scp</code> too.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>introduction
+scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction
+</code></pre></div></div>
+
+<h2 id="running-submission-scripts">Running submission scripts</h2>
+
+<p>On a cluster, there are <em>login</em> nodes and <em>compute</em> nodes. You <strong>never</strong> run an actual analysis that will require notable memory and disk space on a login node (where we have been this whole time). Instead, a <em>scheduler</em> is used to manage requests from users, and queue and execute them in an orderly manner.</p>
+
+<p>Log back on and go to your <code class="language-plaintext highlighter-rouge">introduction</code> directory and go <code class="language-plaintext highlighter-rouge">ls</code>. We want to look at <code class="language-plaintext highlighter-rouge">test_submission.sh</code>, you can do this with <code class="language-plaintext highlighter-rouge">nano</code> or <code class="language-plaintext highlighter-rouge">less</code> or even <code class="language-plaintext highlighter-rouge">cat</code>. I will not define all of the SLURM directives here but we will discuss them in real time.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH --job-name=test_submission</span>
+<span class="c">#SBATCH --output=test_submission.log</span>
+<span class="c">#SBATCH --mail-user=g.tiley@kew.org</span>
+<span class="c">#SBATCH --mail-type=FAIL,END</span>
+<span class="c">#SBATCH --time=6:00:00</span>
+<span class="c">#SBATCH --mem-per-cpu=2G</span>
+<span class="c">#SBATCH --nodes=1</span>
+<span class="c">#SBATCH --ntasks=1</span>
+<span class="c">#SBATCH --cpus-per-task=1</span>
+<span class="c">#SBATCH --partition=short</span>
+<span class="o">[[</span> <span class="nt">-d</span> <span class="nv">$SLURM_SUBMIT_DIR</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$SLURM_SUBMIT_DIR</span>
+
+<span class="nb">echo</span> <span class="s2">"Date              = </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Hostname          = </span><span class="si">$(</span><span class="nb">hostname</span> <span class="nt">-s</span><span class="si">)</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Working Directory = </span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">""</span>
+<span class="nb">echo</span> <span class="s2">"Number of Nodes Allocated      = </span><span class="nv">$SLURM_JOB_NUM_NODES</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Number of Tasks Allocated      = </span><span class="nv">$SLURM_NTASKS</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Number of Cores/Task Allocated = </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="s2">"</span>
+
+<span class="c">#To specify the above directives for interactive job go:</span>
+<span class="c">#srun --nodes=1 --ntasks=1 --cpus-per-task=1 --mem-per-cpu=2G --partition=short --pty bash</span>
+
+<span class="k">for </span>i <span class="k">in</span> <span class="o">{</span>1..10<span class="o">}</span>
+<span class="k">do
+  </span><span class="nb">echo</span> <span class="s2">"begin step </span><span class="nv">$i</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>Do not forget to change your email! If you did, I will find out. After having a look and editing, submit the script with <code class="language-plaintext highlighter-rouge">sbatch test_submission.sh</code>.</p>
+
+<p>The job will complete quickly, but if you are fast enough you might find it in the queue with <code class="language-plaintext highlighter-rouge">squeue -u YOUR_USER_NAME</code>. Check the log file to see that it ran correctly. There should be some information about resource allocation and a list of numbers 1 to 10.</p>
+
+<p>Most of our activities today will happen interactively. This is largely for educational purposes, but it can be helpful for checking analyses are working as intended before submitting a job for days or weeks. Try allocating some resources on an interactive node like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun <span class="nt">--nodes</span><span class="o">=</span>1 <span class="nt">--ntasks</span><span class="o">=</span>1 <span class="nt">--cpus-per-task</span><span class="o">=</span>1 <span class="nt">--mem-per-cpu</span><span class="o">=</span>2G <span class="nt">--partition</span><span class="o">=</span>short <span class="nt">--pty</span> bash
+</code></pre></div></div>
+<p>You are no longer on the <em>login</em> node and you should now be on a <em>compute</em> node. Now, you can safely execute the simple counting bash script by <code class="language-plaintext highlighter-rouge">./count.sh</code></p>
+
+<p>If the script did not run for you, you might need to change the permissions to make it executable. Check the permissions of the files in the directory, make <code class="language-plaintext highlighter-rouge">count.sh</code> executable with <code class="language-plaintext highlighter-rouge">chmod</code>, then check the permissions again and execute:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls -l
+chmod u+x count.sh
+ls -l
+./count.sh
+</code></pre></div></div>
+
+<p>You should now see the numbers 1 to 10 printed to your screen on the cluster. Make sure that you are always running analyses on a compute node by allocating resources with <code class="language-plaintext highlighter-rouge">srun</code> or submitting a job to the scheduler with <code class="language-plaintext highlighter-rouge">sbatch</code>. You should now be able to log on to the cluster, find your way through directories and edit files, and submit jobs responsibly. A topic that will come up throughout the workshop is allocating the number of cpus correctly so that you get the benefits of working on a compute cluster.</p>
+
+<h2 id="some-additional-notes-about-scripts">Some additional notes about scripts</h2>
+
+<p>The details will not come up to much over the workshop, but at various points, you might be asked to run <em>scripts</em>. This is often a catch-all term for human-readable programming languages that are interpreted at run time, often with decent functionality for handling text data. The most popular scripting language is Python, but Perl still glues together many bioinformatic applications, and bash scripting becomes a necessity working on clusters. The below notes are not necessary but may be interesting or provide context to some.</p>
+
+<h3 id="interpreted-code---scripting">Interpreted Code - Scripting</h3>
+<p>Most genomics applications happen, at least in part, with scripting. Scripting languages are great for performing operations on strings or text, like ACGT. They are also not bad for a human to understand and hide the messiness of turning human-readable code to machine-readable code (compiling). That is the work of the interpreter, which happens in real-time. Scripting languages include Python, Perl, and Ruby. You can also accomplish a bit with bash and awk, but my heart-felt recommendation would be to dedicate some time into learning Python if you are new to this.</p>
+
+<p>Let’s see some simple scripts in action and hint at how they might be useful. In <code class="language-plaintext highlighter-rouge">data/</code>, you will find three files <code class="language-plaintext highlighter-rouge">*.params</code> with some results from a model.</p>
+
+<p>In all omics data, we are often iterating over many things (e.g. loci, individuals, populations, bootstrap replicates) to do something repetitive. Let’s execute three different scripts that will allow us to loop over the <code class="language-plaintext highlighter-rouge">*.params</code> files.</p>
+
+<h3 id="loopfilessh---a-simple-bash-script">loopFiles.sh - a simple bash script</h3>
+<p>The first line is a shebang. This is letting your computer know which interpreter program to use. Our first example is using bash, which will be available on any UNIX system. First, all of the <code class="language-plaintext highlighter-rouge">*.params</code> files are collected into a single array or list. We then iterate over the number of elements in that array, print the element to the screen, and quit the script.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash                                                                                                                   </span>
+
+<span class="nv">fileList</span><span class="o">=</span><span class="s2">"../data/*.params"</span>
+<span class="k">for </span>i <span class="k">in</span> <span class="nv">$fileList</span>
+<span class="k">do
+  </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$i</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>Try executing <code class="language-plaintext highlighter-rouge">loopFiles.sh</code> on the cluster with you acquired skills. We can execute programs that are not in our <em>path</em> by specifying the location. If we are in the same folder that we want to execute a program from we would go <code class="language-plaintext highlighter-rouge">./loopFiles.sh</code> such that <code class="language-plaintext highlighter-rouge">.</code> means <em>here</em>. The file names should print to your screen.</p>
+
+<h3 id="loopfilespl---give-me-perl">loopFiles.pl - give me Perl</h3>
+<p>Perl is a popular scripting language that is the glue of the internet and played a large role in early genomics applications. It still is, but has waned in popularity as various R packages and Python. It will give you more flexibility than bash in the long-term and can be quick to learn. Here, we use the <em>glob</em> function to get an array of the file names. We then loop over array elements from their starting position (0) to the end (2) by getting the number of elements in the array with <em>scalar</em> and subtracting 1.</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/perl -w                                                                                                            </span>
+
+<span class="nv">@fileList</span> <span class="o">=</span> <span class="nb">glob</span><span class="p">("</span><span class="s2">../data/*.params</span><span class="p">");</span>
+<span class="k">for</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@fileList</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="si">$fileList</span><span class="s2">[</span><span class="si">$i</span><span class="s2">]</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+<span class="nb">exit</span><span class="p">;</span>
+</code></pre></div></div>
+<p>We could make this script executable as we did with the bash script, or we could go</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl loopFiles.pl
+</code></pre></div></div>
+
+<h3 id="loopfilespy---python-and-its-libraries">loopFiles.py - Python and its libraries</h3>
+<p>Python is a relatively recent language but it the bedrock of most new bioinformatic applications. There has been a lot of development on improving abstraction and this is supported by many libraries (or modules). These are groups of functions that you let python know you want to use with the <code class="language-plaintext highlighter-rouge">import &lt;module&gt;</code> syntax. Here we load two very basic modules <code class="language-plaintext highlighter-rouge">sys</code> and <code class="language-plaintext highlighter-rouge">os</code>, but a third one we actually use, <code class="language-plaintext highlighter-rouge">glob</code>! We can use functions from modules by going <code class="language-plaintext highlighter-rouge">&lt;module&gt;.&lt;function&gt;()</code>, so we see <code class="language-plaintext highlighter-rouge">glob.glob()</code> here.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3                                                                                                        
+</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">fileList</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">"../data/*.params"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">fileList</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">fileList</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">exit</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Let’s run it</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python loopFiles.py
+</code></pre></div></div>
+
+<p>If that did not work, <code class="language-plaintext highlighter-rouge">python</code> on your system likely points to Python 2 and this is written for Python 3. Systems may differentiate the two by requiring Python 3 be specified as</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 loopFiles.pl
+</code></pre></div></div>
+
+<h2 id="using-scripts-to-retrieve-information-from-files">Using scripts to retrieve information from files</h2>
+<p>Scripting is a helpful way to get results from our inevitable thousands of output files. Here are a couple of examples in Perl and Python that build upon looping over the file list. Now, each file is opened and we process them line-by-line to extract the relevant information. Our goal is to make one table with the parameter values for each params file.</p>
+
+<h3 id="getresultspl---a-regex-approach">getResults.pl - a regex approach</h3>
+<p>Scripting languages can use regular expressions (regex) to find patterns in strings. Good text editors can find and replace with text editors too. You can use them to save pieces of the string you care about and work with those further.</p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/perl -w                                                                                                          </span>
+
+<span class="nv">%data</span> <span class="o">=</span> <span class="p">();</span>
+
+<span class="nv">@fileList</span> <span class="o">=</span> <span class="nb">glob</span><span class="p">("</span><span class="s2">../data/*.params</span><span class="p">");</span>
+<span class="k">for</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@fileList</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="c1">#    print "$fileList[$i]\n";                                                                                               </span>
+    <span class="nb">open</span> <span class="nv">FH1</span><span class="p">,'</span><span class="s1">&lt;</span><span class="p">',"</span><span class="si">$fileList</span><span class="s2">[</span><span class="si">$i</span><span class="s2">]</span><span class="p">";</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">&lt;</span><span class="nv">FH1</span><span class="o">&gt;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="sr">/(\S+)\s+(\S+)/</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$parameter</span> <span class="o">=</span> <span class="err">$</span><span class="mi">1</span><span class="p">;</span>
+            <span class="nv">$value</span> <span class="o">=</span> <span class="err">$</span><span class="mi">2</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$parameter</span> <span class="ow">ne</span> <span class="p">"</span><span class="s2">Parameter</span><span class="p">")</span>
+            <span class="p">{</span>
+                <span class="nb">push</span> <span class="nv">@</span><span class="p">{</span><span class="nv">$data</span><span class="p">{</span><span class="nv">$parameter</span><span class="p">}},</span> <span class="nv">$value</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">close</span> <span class="nv">FH1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">print</span> <span class="p">"</span><span class="s2">File</span><span class="p">";</span>
+<span class="k">foreach</span> <span class="nv">$parameter</span> <span class="p">(</span><span class="nb">sort</span><span class="p">(</span><span class="nb">keys</span><span class="p">(</span><span class="nv">%data</span><span class="p">)))</span>
+<span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="se">\t</span><span class="si">$parameter</span><span class="p">";</span>
+<span class="p">}</span>
+<span class="k">print</span> <span class="p">"</span><span class="se">\n</span><span class="p">";</span>
+
+<span class="k">for</span> <span class="nv">$i</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@fileList</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="si">$fileList</span><span class="s2">[</span><span class="si">$i</span><span class="s2">]</span><span class="p">";</span>
+    <span class="k">foreach</span> <span class="nv">$parameter</span> <span class="p">(</span><span class="nb">sort</span><span class="p">(</span><span class="nb">keys</span><span class="p">(</span><span class="nv">%data</span><span class="p">)))</span>
+    <span class="p">{</span>
+        <span class="k">print</span> <span class="p">"</span><span class="se">\t</span><span class="si">$data</span><span class="s2">{</span><span class="si">$parameter</span><span class="s2">}[</span><span class="si">$i</span><span class="s2">]</span><span class="p">";</span>
+    <span class="p">}</span>
+    <span class="k">print</span> <span class="p">"</span><span class="se">\n</span><span class="p">";</span>
+<span class="p">}</span>
+<span class="nb">exit</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Scripting languages give you access to helpful <em>data structures</em>. Here, I make a <em>hash</em> called <code class="language-plaintext highlighter-rouge">data</code>, which is denoted by the <code class="language-plaintext highlighter-rouge">%</code>. Hashes have two parts, the <em>key</em> and the <em>value</em>. This is different from an <em>array</em> where you only need to know the element number to access the value - it can be a string too. And here, I actually make a hash of arrays, where each key (a,b,c) gives us the values from the three different files. I then loop back over the data structure to print a matrix that we might work with in R.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl getReults.pl
+</code></pre></div></div>
+
+<h3 id="getresultspy---splitting-lines-and-tuples-for-keys">getResults.py - splitting lines and tuples for keys</h3>
+<p>Python can use regex too, but here I simply apply some prior knowledge about the params files to extract what I want. Python also uses hashes, but here the data structure is called a <em>dictionary</em> or <em>dict</em>. Here, we actually have a two-dimensional dictionary where each key is a <em>tuple</em>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3                                                                                                      
+</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">fileList</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">"../data/*.params"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">fileList</span><span class="p">)):</span>
+    <span class="n">InFile</span> <span class="o">=</span> <span class="nb">open</span> <span class="p">(</span><span class="n">fileList</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">Line</span> <span class="ow">in</span> <span class="n">InFile</span><span class="p">:</span>
+        <span class="n">Line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">ElementList</span> <span class="o">=</span> <span class="n">Line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ElementList</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ElementList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"Parameter"</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">ElementList</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">ElementList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'File</span><span class="se">\t</span><span class="s">Parameter</span><span class="se">\t</span><span class="s">Value'</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">fileList</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span><span class="n">data</span><span class="p">[(</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">)],</span><span class="n">end</span><span class="o">=</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="nb">exit</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You might notice that when printing here, we access the keys a bit more efficiently than the Perl case and print out a file that would be more appropriate for tidyverse R packages, so you can start to see how things fit together here.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 getReults.py
+</code></pre></div></div>
+
+<h2 id="compiled-code">Compiled Code</h2>
+<p>Examples of compiled languages are C, C++, and Rust. They implement low-level functions compared to interpreted/scripting languages (e.g. it would take some creativity to re-implement the glob function), but they are more efficient with memory allocation and potentially faster. C and C++ underly many of the workhorses of the genomics field, such as BWA, BLAST, RAxML, and BPP.</p>
+
+<p>There is a silly example available for us to practice with. We will do this on the cluster since getting a good C compiler set up for Windows users can be time-consuming and frustrating. This should work for the mac and linux users though on your own systems.</p>
+
+<p>So, go into the <code class="language-plaintext highlighter-rouge">compiledExample</code> folder. Since you might still be in <code class="language-plaintext highlighter-rouge">scripts</code>, all you need to do is go</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ../compiledExample
+</code></pre></div></div>
+
+<p>To generate an executable program from the C code, we will run the gcc compiler as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -Wall -o betaSolver betaSolver.c solveBeta.c
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">-Wall</code> is telling gcc to print warning flags which you will often see when building popular software applications. Our source code is in two different files <code class="language-plaintext highlighter-rouge">betaSolver.c</code> and <code class="language-plaintext highlighter-rouge">solveBeta.c</code>, and we use <code class="language-plaintext highlighter-rouge">-o</code> to indicate the output program <code class="language-plaintext highlighter-rouge">betaSolver</code>
+You should now have the compiled C program <code class="language-plaintext highlighter-rouge">betaSolver</code>. Give it a try! Pull up the help menu and then see if you can get the program to do what it should.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./betaSolver -h
+</code></pre></div></div>
+
+<p>You almost never compile programs by invoking gcc yourself though. This would leave a lot of wiggle room for user errors. Thus, programs sometimes come with a Makefile. There is one to compile the <code class="language-plaintext highlighter-rouge">betaSolver</code> program for you to save some typing. Let’s see it in action.
+We will first delete the application, then run the makefile to re-compile it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm betaSolver
+make
+</code></pre></div></div>
+
+<p>There will often be frustrating moments when compiling a program that you want to use, because you will run make and it will stop compiling with errors and give you very cryptic messages. As programs become very complex, there can be many external libraries that a program depends on. A step that happens with compiling is <em>linking</em> all of the bits of code scattered across a computer into a single computer-readable program. Let’s break our program.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean
+mv betaSolver.h wrong.h
+make
+</code></pre></div></div>
+<p>Makefiles sometimes come with a <em>clean</em> option, so that all of the compiled code is removed. We then change the name of our helper file to <code class="language-plaintext highlighter-rouge">wrong.h</code> so the compiler no longer fins the correct one. You will now get a error that stops the compiler. This is an easy issue to diagnose from the error message, but sometimes it is not. Often it is a missing header file or library when using a large shared cluster with piecemeal installs.</p>
+
+<h3 id="wrap-up">Wrap up</h3>
+<p>You have now logged onto the cluster edited some files and moved them around. You have transferred files between your computer and the cluster. You have successfully run some some scripts and compiled a program.</p>
+
+<h3 id="pro-tip">Pro Tip</h3>
+<p>For easy cluster access, be sure you have made the suggested edits to your config file on your local computer. Instructions are provided by the Crop Diversity Cluster <a href="https://help.cropdiversity.ac.uk/ssh-terminal-keys.html#additional-notes">here</a>.</p>
 
   </div>
 
