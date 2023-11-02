@@ -1,22 +1,29 @@
 ---
 layout: page
 title: Hypothesis Testing with BPP
-permalink: /activities/BPP/
+permalink: /activities/hypothesis_testing/
 ---
 
 ## Getting Started
 
-Download one of the archives that have the data and pre-configured control files for today's exercises [here](https://www.dropbox.com/scl/fo/ve7gua8fuex73t9lwluvi/h?rlkey=3n0px6iohxm9xx3hxp5tgnp6u&dl=0).
+Log on to the cluster and copy the data and pre-configured control files for today's exercises:
+```
+ssh gruffalo
+cd /mnt/shared/scratch/YOUR_USER_NAME/network_workshop
+cp -r /mnt/shared/scratch/gtiley/network_workshop/hypothesis_testing .
+```
+
+[comment]: # A copy of the directory is available for local download here.
 
 ## Introduction
 There are now a range of tools for detecting historical gene flow between species or populations from genomic data. This might involve searches with network models, tests with site patterns, or other lines of evidence. The goal of this exercise is to understand how full-likelihood methods can be a tool for testing multiple competing hypotheses and divergence time estimation to help us bridge the gap between patterns and processes. There are other full likelihood implementations of multispecies network coalescent or related models, but we will focus on the BPP software.
 
-Our test data is a small sample of North American dry ferns (*Dryopteris*). These are interesting because a lot is known about relationships between diploid progenitors and the allopolyploids. Can we get the relationship between diploids and an allotetraploid correct? We have a reduced set of 30 loci from a target enrichment experiment. The relationships among all *Dryopteris* are a bit complex , but we simplify the story by using a small sample and limiting ourselves to a level-1 network.
+Our test data is a small sample of baobabs (*Adansonia*). The data, likes our previous examples, comes from Karimi et al. (2020)[^1].
 
 {:refdef: style="text-align: center;"}
-![Some cool ferns]({{site.baseurl}}/images/Dryopteris-Prior-1-workshop.png)
+![Some cool ferns]({{site.baseurl}}/images/Karimi2020-Fig2.png)
 {: refdef}
-**Adapted from Fig. 1 of Tiley et al. 2021[^1]-** Relationships between North American *Dryopteris* and their ploidy levels. Our example data includes one allotetraploid.
+**Fig. 2 of Karimi et al. 2020[^1]-** Relationships among *Adansonia* species. Malagasy species are described in two sections based on floral morphology, section Longitubae and section Brevitubae. Notice that section Longitubae is not monophyletic. There could be many reasons for this, perhaps introgression of the genes underlying the traits. Note the strong support all nodes in the species tree based on ASTRAL's local posterior probabilities, but many genes conflict with the backbone of this species tree.
 
 Full-likelihood methods provide us a powerful tool because we can evaluate multiple competing hypotheses in a statistically sound probabilistic framework. However, it can be tempting to compare as many competing models as possible. In practice, this will be difficult due to computational burdens or our inability to explain the rational for every *possible* model. A successful application of BPP or similar full-likelihood programs relies on your knowledge of the system and their natural history, and perhaps prior analyses with a range of phylogenetic or population genetic tools. Our network hypothesis here is bolstered by a long history of chromosome investigations and previous phylogenetic results with a few Sanger loci.
 

@@ -26,7 +26,7 @@ Participation in the workshop is free, but participants must bring their own lap
 |-----------|---------------------------------------------------|--------------------------------------------------------------------|
 -->
 
-Links to lecture material and exercises will be updated here before the workshop.
+Instructions for making all necessary software available on the cluster are [here]({{site.baseurl}}/activities/pathconfiguration/).
 
 
 ## RBG Kew

@@ -9,14 +9,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Methodological advances in reticulate evolution" />
 <meta property="og:description" content="Methodological advances in reticulate evolution" />
-<link rel="canonical" href="http://localhost:4000/RBG-Networks/activities/BPP/" />
-<meta property="og:url" content="http://localhost:4000/RBG-Networks/activities/BPP/" />
+<link rel="canonical" href="http://localhost:4000/RBG-Networks/activities/hypothesis_testing/" />
+<meta property="og:url" content="http://localhost:4000/RBG-Networks/activities/hypothesis_testing/" />
 <meta property="og:site_name" content="Methodological Advances in Reticulate Evolution" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Hypothesis Testing with BPP" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Methodological advances in reticulate evolution","headline":"Hypothesis Testing with BPP","url":"http://localhost:4000/RBG-Networks/activities/BPP/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Methodological advances in reticulate evolution","headline":"Hypothesis Testing with BPP","url":"http://localhost:4000/RBG-Networks/activities/hypothesis_testing/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/RBG-Networks/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/RBG-Networks/feed.xml" title="Methodological Advances in Reticulate Evolution" /></head>
 <body><header class="site-header" role="banner">
@@ -45,15 +45,19 @@
   <div class="post-content">
     <h2 id="getting-started">Getting Started</h2>
 
-<p>Download one of the archives that have the data and pre-configured control files for today’s exercises <a href="https://www.dropbox.com/scl/fo/ve7gua8fuex73t9lwluvi/h?rlkey=3n0px6iohxm9xx3hxp5tgnp6u&amp;dl=0">here</a>.</p>
+<p>Log on to the cluster and copy the data and pre-configured control files for today’s exercises:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh gruffalo
+cd /mnt/shared/scratch/YOUR_USER_NAME/network_workshop
+cp -r /mnt/shared/scratch/gtiley/network_workshop/hypothesis_testing .
+</code></pre></div></div>
 
 <h2 id="introduction">Introduction</h2>
 <p>There are now a range of tools for detecting historical gene flow between species or populations from genomic data. This might involve searches with network models, tests with site patterns, or other lines of evidence. The goal of this exercise is to understand how full-likelihood methods can be a tool for testing multiple competing hypotheses and divergence time estimation to help us bridge the gap between patterns and processes. There are other full likelihood implementations of multispecies network coalescent or related models, but we will focus on the BPP software.</p>
 
-<p>Our test data is a small sample of North American dry ferns (<em>Dryopteris</em>). These are interesting because a lot is known about relationships between diploid progenitors and the allopolyploids. Can we get the relationship between diploids and an allotetraploid correct? We have a reduced set of 30 loci from a target enrichment experiment. The relationships among all <em>Dryopteris</em> are a bit complex , but we simplify the story by using a small sample and limiting ourselves to a level-1 network.</p>
+<p>Our test data is a small sample of baobabs (<em>Adansonia</em>). The data, likes our previous examples, comes from Karimi et al. (2020)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
 
-<p style="text-align: center;"><img src="/RBG-Networks/images/Dryopteris-Prior-1-workshop.png" alt="Some cool ferns" /></p>
-<p><strong>Adapted from Fig. 1 of Tiley et al. 2021<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>-</strong> Relationships between North American <em>Dryopteris</em> and their ploidy levels. Our example data includes one allotetraploid.</p>
+<p style="text-align: center;"><img src="/RBG-Networks/images/Karimi2020-Fig2.png" alt="Some cool ferns" /></p>
+<p><strong>Fig. 2 of Karimi et al. 2020<sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>-</strong> Relationships among <em>Adansonia</em> species. Malagasy species are described in two sections based on floral morphology, section Longitubae and section Brevitubae. Notice that section Longitubae is not monophyletic. There could be many reasons for this, perhaps introgression of the genes underlying the traits. Note the strong support all nodes in the species tree based on ASTRAL’s local posterior probabilities, but many genes conflict with the backbone of this species tree.</p>
 
 <p>Full-likelihood methods provide us a powerful tool because we can evaluate multiple competing hypotheses in a statistically sound probabilistic framework. However, it can be tempting to compare as many competing models as possible. In practice, this will be difficult due to computational burdens or our inability to explain the rational for every <em>possible</em> model. A successful application of BPP or similar full-likelihood programs relies on your knowledge of the system and their natural history, and perhaps prior analyses with a range of phylogenetic or population genetic tools. Our network hypothesis here is bolstered by a long history of chromosome investigations and previous phylogenetic results with a few Sanger loci.</p>
 
@@ -341,7 +345,7 @@ Once all of the runs are done for the 8 steps. You can calculate the marginal li
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p>Tiley GP, Crowl AA, Manos PS, Sessa EB, Solís-Lemus C, Yoder AD, Burleigh JG. 2021. <a href="https://www.biorxiv.org/content/10.1101/2021.05.04.442457v1.abstract">Phasing alleles improves network inference with allopolyploids.</a> <em>bioRxiv</em> doi: https://doi.org/10.1101/2021.05.04.442457<br /> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Tiley GP, Crowl AA, Manos PS, Sessa EB, Solís-Lemus C, Yoder AD, Burleigh JG. 2021. <a href="https://www.biorxiv.org/content/10.1101/2021.05.04.442457v1.abstract">Phasing alleles improves network inference with allopolyploids.</a> <em>bioRxiv</em> doi: https://doi.org/10.1101/2021.05.04.442457<br /> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
       <p>Xie W, Lewis PO, Fan Y, Kuo L, Chen M-H. 2011. <a href="https://academic.oup.com/sysbio/article/60/2/150/2461669?login=false">Improving marginal likelihood estimation for Bayesian phylogenetic model selection.</a> <em>Syst Biol</em> 60:150-160<br /> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
