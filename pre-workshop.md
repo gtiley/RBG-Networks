@@ -22,7 +22,9 @@ After successful registration, you will need to follow instructions on generatin
 It is best to register and have your ssh key in place as early as possible so as to not overwhelm the admin, but George is available during the office hours if any of the registration and key instructions are unclear.
 
 
-## Some common prerequisites
+## Some Common Prerequisites
+
+*The below instructions are for installation on your own computer. All necessary software and dependencies for analyses have be pre-installed on the cluster for you.*
 
 If you do not already, please install the following:
 
@@ -37,7 +39,7 @@ If you do not already, please install the following:
 	- I highly recommend [gitbash](https://gitforwindows.org/)
 	- A tried and true alternative is [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
-## BPP
+### BPP
 
 We will run the latest version of BPP on the cluster, which can be accessed with the [release page of the BPP GitHub](https://github.com/bpp/bpp/releases/tag/v4.6.2).
 
@@ -50,7 +52,7 @@ devtools::install_github("dosreislab/bppr")
 You should also install [Tracer](https://github.com/beast-dev/tracer/releases/tag/v1.7.2), which is an interactive program used for evaluating the quality of Bayesian posterior samples.
 
 
-## PhyloNetworks
+### PhyloNetworks
 The bulk of analysis will be carried out on the cluster, but the visualization steps are best carried out on your own computer. This will require installing Julia and the associated packages for PhyloNetworks:
 - [Download](https://julialang.org) julia and
   follow instructions to install julia
