@@ -61,12 +61,12 @@ cp -r /mnt/shared/scratch/gtiley/network_workshop/hypothesis_testing .
 
 <p>Full-likelihood methods provide us a powerful tool because we can evaluate multiple competing hypotheses in a statistically sound probabilistic framework. However, it can be tempting to compare as many competing models as possible. In practice, this will be difficult due to computational burdens or our inability to explain the rational for every <em>possible</em> model. A successful application of BPP or similar full-likelihood programs relies on your knowledge of the system and their natural history, and perhaps prior analyses with a range of phylogenetic or population genetic tools. Our network hypothesis here is bolstered by a long history of chromosome investigations and previous phylogenetic results with a few Sanger loci.</p>
 
-<h3 id="how-to-specify-a-network">How to specify a network</h3>
+<h2 id="how-to-specify-a-network">How to specify a network</h2>
 
 <p>Formatting networks correctly can be difficult, especially when we want to specify the direction of gene flow. Luckily, BPP comes with a simple program to help create network models based on simpler binary trees. Consider our backbone topology - we will add some node labels for our convenience too. We can create a simple text file <code class="language-plaintext highlighter-rouge">msci-create.in</code> that provides the backbone topology as well as the branch that gene flow goes from and the branch that gene flow goes into. Multiple gene flow events can be specified here and the branch lengths of the introgression edges can be constrained if appropriate:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tree (Pmun,(Dint,(Dlud,(Dcel,Dgol)u)t)s)r;
-hybridization t Dlud, u Dcel as i j tau=yes, yes phi=0.2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tree (Smic,(Agre,(Adig,(Arub,(Agra,Amad)e)d)c)b)a;
+hybridization c Adig, e Agra as w x tau=yes, yes phi=0.2
 </code></pre></div></div>
 
 <p>Here, we have allowed the divergence time of the introgression edges from their parental lineages to be different from the age of introgression. We specify an initial <em>introgression probability</em> of 0.2. The <em>introgression probability</em> will be sampled by the MCMC algorithm, so this is only a starting value. We can generate the network used for our analyses with the following command:</p>
@@ -74,55 +74,54 @@ hybridization t Dlud, u Dcel as i j tau=yes, yes phi=0.2
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bpp --msci-create msci-create.in &gt; msci-create.out
 </code></pre></div></div>
 
-<p>Below is the resulting network that we can add to our control file. You should try to draw the network yourself from the text string and convince yourself this is correct.</p>
+<p>Below is the resulting network that we can add to our control file. <strong>Bonus Activity!</strong> Try to draw the network yourself from the text string and convince yourself this is correct.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Pmun, (Dint,((j[&amp;phi=0.200000,tau-parent=yes],Dlud)i,((Dcel)j[&amp;phi=0.800000,tau-parent=yes],Dgol)u)t)s)r;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(Smic, (Agre,((x[&amp;phi=0.200000,tau-parent=yes],Adig)w,(Arub,((Agra)x[&amp;phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
 </code></pre></div></div>
 
 <h3 id="the-bpp-control-file">The BPP control file</h3>
 <p>All aspects of data input, results output, and the model specification are done within the <em>control file</em>. An example looks like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          seed =  219527
-
-       seqfile = Dryopteris.bppDat
-      Imapfile = Dryopteris.spmap
-       outfile = 4.1.out
-      mcmcfile = 4.1.mcmc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          seed =  -1
+       seqfile = ../../../baobab_data/baobab.100.bppDat
+      Imapfile = ../../../baobab_data/baobab.6taxa.spMap
+       outfile = model2.out
+      mcmcfile = mcmc.txt
 
   speciesdelimitation = 0
          speciestree = 0
 
    speciesmodelprior = 1  * 0: uniform LH; 1:uniform rooted trees; 2: uniformSLH; 3: uniformSRooted
 
-  species&amp;tree = 5  Pmun Dint Dgol Dcel Dlud
-                    1 1 1 1 1
-		    (Pmun, (Dint,((j[&amp;phi=0.200000,tau-parent=yes],Dlud)i,((Dcel)j[&amp;phi=0.800000,tau-parent=yes],Dgol)u)t)s)r;
-      phase = 0 0 0 0 0
+  species&amp;tree = 6  Adig Agra Agre Amad Arub Smic
+                    3 2 1 2 2 1
+                  (Smic, (Agre,((x[&amp;phi=0.200000,tau-parent=yes],Adig)w,(Arub,((Agra)x[&amp;phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
+        phase = 0 0 0 0 0 0
                   
-      usedata = 1  * 0: no data (prior); 1:seq like
-      nloci = 30  * number of data sets in seqfile
+       usedata = 1  * 0: no data (prior); 1:seq like
+         nloci = 40  * number of data sets in seqfile
 
-      cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
+     cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
 
-      thetaprior = 2 0.01 e  # invgamma(a, b) for theta
-      tauprior = 3 0.02    # invgamma(a, b) for root tau &amp; Dirichlet(a) for other tau's
-      clock = 1
-      model = hky
-      alphaprior = 2.4 4 4
-   phiprior = 1 1
-      locusrate = 1 0 0 10 iid
+    thetaprior = 2 0.01 e  * invgamma(a, b) for theta
+      tauprior = 3 0.07    * invgamma(a, b) for root tau &amp; Dirichlet(a) for other tau's
+ phiprior = 1 1 * beta(a, b)
 
-      finetune =  1: 0.3 0.3 0.01 0.05 0.3 0.3 1.0 0.3
+      locusrate = 0 * no rate variation among loci
+      clock = 1 * the same rate of molecular evolutation among all branches
+
+	 finetune =  1: 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
          print = 1 0 0 0   * MCMC samples, locusrate, heredityscalars, Genetrees
         burnin = 20000
-      sampfreq = 10
-      nsample = 10000
-      threads = 4 1 1
+      sampfreq = 20
+       nsample = 10000
+
+       threads = 4 1 1
 </code></pre></div></div>
 
 <p>All of the options and parameters are explained very well in the <a href="https://github.com/bpp/bpp">BPP manual</a>, but here is a short explanation:</p>
 <ul>
-  <li><strong>seed</strong> = random number used to generate starting conditions for the MCMC algorithm</li>
+  <li><strong>seed</strong> = random number used to generate starting conditions for the MCMC algorithm. -1 uses the system clock to</li>
   <li><strong>seqfile</strong> = input sequences. BPP uses a phylip format with all loci in one file</li>
   <li><strong>Imapfile</strong> = a text file matching individuals to their species. You can sample multiple individuals per species under the MSC</li>
   <li><strong>outfile</strong> = the primary output of BPP with parameter estimates</li>
@@ -152,74 +151,75 @@ hybridization t Dlud, u Dcel as i j tau=yes, yes phi=0.2
 
 <h2 id="parameter-estimation-and-convergence">Parameter estimation and convergence</h2>
 
-<p>We can run BPP using our example control file and data. Change into the <code class="language-plaintext highlighter-rouge">BPP-Workshop</code> folder and you will find the sequence data <code class="language-plaintext highlighter-rouge">Dryopteris.bppDat</code> and the individual-to-species map <code class="language-plaintext highlighter-rouge">Dryopteris.spmap</code>. Have a look to get a feel for the formatting. If you prepare the individual-to-species map file for your own data, the input data for BPP can be prepared by the <code class="language-plaintext highlighter-rouge">formatBPPdata.pl</code> script from a collection of aligned fasta files in the <code class="language-plaintext highlighter-rouge">exampleData_30loci</code> folder.</p>
+<p>We can run BPP using our example control file and data. Change into the <code class="language-plaintext highlighter-rouge">hypothesis_testing</code> folder and you will find some sequence data <code class="language-plaintext highlighter-rouge">baobab.100.bppDat</code> and the individual-to-species map <code class="language-plaintext highlighter-rouge">baobab.6taxa.spmap</code>. Have a look to get a feel for the formatting.</p>
 
-<p>Change into <code class="language-plaintext highlighter-rouge">Converge</code> and then the folder for model 4 <code class="language-plaintext highlighter-rouge">4</code> and run BPP on one of the prepared control files by:</p>
+<p>Change into <code class="language-plaintext highlighter-rouge">model1/convergence/1</code>  and run BPP on the prepared control file by:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd Converge
-cd 4
-bpp --cfile 4.1.ctl
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd model1/convergence
+ls
+cd 1
+ls
+bpp --cfile model1.ctl
 </code></pre></div></div>
 
-<p>The MCMC analysis will start. It will take a while even for our small dataset. While that is running, we can look at some finished runs and evaluate convergence and look at the results. I have already completed 4 runs for all models with the same MCMC settings. A popular tool for analyzing convergence is <a href="https://github.com/beast-dev/tracer">Tracer</a>. It is a useful tool, but I am a big believer that chasing ESS scores might not be the best for complex introgression models. Instead, we will run an R script to summarize some information for us, and if we are satisfied, we can use BPP to use all of our MCMC samples for parameter estimation.</p>
+<p>The MCMC analysis will start. It should take about 5 minutes for our simplest model with 6 species and 100 loci. The MCMC settings are too short, but necessary for the time constraints. While that is running, what information can you get from BPP’s screen output. Try completing 4 runs for a model and analyzing convergence. A helpful tool is <a href="https://github.com/beast-dev/tracer">Tracer</a>, but BPP provides some helpful summary statistics too. An R script is provided to help plot posteriors for all parameters too. If we are satisfied, we can use one MCMC analysis from BPP or combine them to report parameter estimates. The plotting script can be executed from the command line with</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ../../Converge-completed/4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ../../
 R CMD BATCH plotPosteriors.R
 </code></pre></div></div>
 
 <p>Alternatively, you can run the R script from Rstudio or the R shell. A quick check of all of the parameter posteriors is that they look pretty similar. I think a good indication of convergence is a comparison of the median node heights (divergence times). If everything went well, our estimates should be very close to a one-to-one relationship.</p>
 
 <p style="text-align: center;"><img src="/RBG-Networks/images/NodeHeights.png" alt="Checking convergence of node heights across runs" /></p>
-<p><strong>Median node heights from four MCMC runs-</strong> The posteriors from runs 1 and 2 or 3 and 4 are combined to display in the scatter plot. The dotted line is the one-to-one line.</p>
+<p><strong>Median node heights from four MCMC runs for the two-rate MSCi model-</strong> The posteriors from runs 1 and 2 or 3 and 4 are combined to display in the scatter plot. The dotted line is the one-to-one line. The deviations show we should benefit from longer MCMC anlayses.</p>
 
-<p>In my opinion, everything looks good! We could benefit from a larger sample frequency and probably an increased burnin here, but it is acceptable. For reporting our results, there are two choices:</p>
+<p>Everything should look good enough to move forward with the excercise. We could benefit from a larger sample frequency and probably an increased burnin here, but it is acceptable. For reporting our results, there are two choices:</p>
 <ol>
   <li>Report the results of the first MCMC analysis, since everything converged</li>
   <li>Combine the MCMC sample across runs, if we need to increase our sample size
 You are fine doing either but depending on your reviewer, they might tell you to do the other. If you want to generate the BPP output for the combined sample, we can concatenate the MCMC output from the 4 runs together, but there is only 1 header line. This was done for <code class="language-plaintext highlighter-rouge">combined.mcmc</code>. Then we need to make a new control file <code class="language-plaintext highlighter-rouge">combined.ctl</code> with some edits:</li>
 </ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          seed =  219527
-
-       seqfile = ../../Dryopteris.bppDat
-      Imapfile = ../../Dryopteris.spmap
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          seed =  -1
+       seqfile = ../../../baobab_data/baobab.100.bppDat
+      Imapfile = ../../../baobab_data/baobab.6taxa.spMap
        outfile = combined.out
-      mcmcfile = combined.mcmc
+      mcmcfile = combined.mcmc.txt
 
   speciesdelimitation = 0
          speciestree = 0
 
    speciesmodelprior = 1  * 0: uniform LH; 1:uniform rooted trees; 2: uniformSLH; 3: uniformSRooted
 
-  species&amp;tree = 5  Pmun Dint Dgol Dcel Dlud
-                    1 1 1 1 1
-		    (Pmun, (Dint,((j[&amp;phi=0.200000,tau-parent=yes],Dlud)i,((Dcel)j[&amp;phi=0.800000,tau-parent=yes],Dgol)u)t)s)r;
-      phase = 0 0 0 0 0
+  species&amp;tree = 6  Adig Agra Agre Amad Arub Smic
+                    3 2 1 2 2 1
+                  (Smic, (Agre,((x[&amp;phi=0.200000,tau-parent=yes],Adig)w,(Arub,((Agra)x[&amp;phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
+        phase = 0 0 0 0 0 0
                   
-      usedata = 1  * 0: no data (prior); 1:seq like
-      nloci = 30  * number of data sets in seqfile
+       usedata = 1  * 0: no data (prior); 1:seq like
+         nloci = 40  * number of data sets in seqfile
 
-      cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
+     cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
 
-      thetaprior = 2 0.01 e  # invgamma(a, b) for theta
-      tauprior = 3 0.02    # invgamma(a, b) for root tau &amp; Dirichlet(a) for other tau's
-      clock = 1
-      model = hky
-      alphaprior = 2.4 4 4
-   phiprior = 1 1
-      locusrate = 1 0 0 10 iid
+    thetaprior = 2 0.01 e  * invgamma(a, b) for theta
+      tauprior = 3 0.07    * invgamma(a, b) for root tau &amp; Dirichlet(a) for other tau's
+ phiprior = 1 1 * beta(a, b)
 
-      finetune =  1: 0.3 0.3 0.01 0.05 0.3 0.3 1.0 0.3
-         print = -1 0 0 0   * Changing print to -1 will only summarize the mcmcfile
+      locusrate = 0 * no rate variation among loci
+      clock = 1 * the same rate of molecular evolutation among all branches
+
+	 finetune =  1: 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+         print = -1 0 0 0   * MCMC samples, locusrate, heredityscalars, Genetrees
         burnin = 20000
-      sampfreq = 10
-      nsample = 40000
-*      threads = 4 1 1
+      sampfreq = 20
+       nsample = 10000
+
+       * threads = 4 1 1
 </code></pre></div></div>
 
 <p>Notice the the mcmcfile is now our combined sample as input. We then change <strong>print</strong> to -1 and this will instruct BPP to bypass the MCMC and summarize the mcmcfile as the new outfile. If you every want to comment out a line in the control file, you can uses a “*”, like I did for the <strong>threads</strong> option.</p>
 
-<p>Can you find the mean age of introgression for our allotetraploid and its 95% highest posterior density (HPD) interval in the output file? How does your new run compare when it is finished? You can add the results of your new run to a <a href="https://docs.google.com/spreadsheets/d/1tKoA4iBUqMxCz9Vi8c73tEpAbY18nT9e2hYkROMvhek/edit?usp=sharing">google sheet</a>.</p>
+<p>Can you find the mean age of introgression for the reticulation edges and their 95% highest posterior density (HPD) intervals in the output file? What about the mean introgression probabilities? You can add the results of your analyses to a <a href="https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing">google sheet</a>.</p>
 
 <p>What if we do not have a model that we trust, but have multiple competing hypotheses? The next steps will show us techniques for comparing models, but I recommend some analysis like above across <em>some</em> or all of your hypotheses to check that your MCMC settings are sufficient. What can happen is that as model complexity increases (i.e. more introgression edges), you will need longer sample intervals and longer burn-ins. Settings that work well for a binary tree might be problematic for networks and this should be checked in advance before you realize the problem after computationally intense analyses.</p>
 
@@ -236,116 +236,97 @@ You are fine doing either but depending on your reviewer, they might tell you to
   <tbody>
     <tr>
       <td>1</td>
-      <td><em>D. celsa</em> sister to <em>D. ludoviciana</em></td>
+      <td>The backbone species tree</td>
     </tr>
     <tr>
       <td>2</td>
-      <td><em>D. celsa</em> sister to <em>D. goldiana</em></td>
+      <td>Episodic introgression from <em>A. digitata</em> into <em>A. grandidierii</em></td>
     </tr>
     <tr>
       <td>3</td>
-      <td><em>D. goldiana</em> sister to <em>D. ludoviciana</em></td>
+      <td>Episodic introgression from <em>A. rubrostipa</em> into <em>A. madagascariensis</em></td>
     </tr>
     <tr>
       <td>4</td>
-      <td><em>D. goldiana</em> and <em>D. ludoviciana</em> are progenitors of <em>D. celsa</em></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td><em>D. goldiana</em> and <em>D. ludoviciana</em> are progenitors of <em>D. celsa</em></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td><em>D. goldiana</em> and <em>D. ludoviciana</em> are progenitors of <em>D. celsa</em></td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Model 4 with introgression from <em>D. ludoviciana</em> into <em>D. goldiana</em></td>
+      <td>Two episodic introgression events</td>
     </tr>
   </tbody>
 </table>
 
-<p>Marginal likelihoods are time-intensive, because the require us to generate an MCMC sample for multiple values of <strong>beta</strong>, the factor that allows us to integrate out the prior. We do not have time to cover the details of why, but let’s get started doing and there is room for discussion after.</p>
+<p>Marginal likelihoods are time-intensive, because they require us to generate an MCMC sample for multiple values of <strong>beta</strong>. BPP provides some tools to help you determine appropriate values of <strong>beta</strong>, but we will focus on using the <a href="https://github.com/dosreislab/bppr">bppr R package</a>.</p>
 
-<p>To estimate the marginal likelihood we need to generate the series of power posteriors. A reasonable number of steps can be hard to determine, but you can repeat the analysis for an increasing number of steps to check stability of the marginal lnL estimate. I tend to use 24 steps for my work. We will use 8 here to speed up the process.</p>
+<p>To estimate the marginal likelihood we need to generate the series of power posteriors. A reasonable number of steps can be hard to determine, but you can repeat the analysis for an increasing number of steps to check stability of the marginal lnL estimate. We will use 8 here to speed up the process but look at some results with 32 steps to get a feel for the effects of the number of steps on marginal lnL estimates and model selection results.</p>
 
-<p>Some files have been prepared for you. Go ahead and start your first run for your assigned model. For example, if you have model 1, do:</p>
+<p>Some files have been prepared for you. Everyone will be responsible for at least one marginal likelihood calculation for a different hypothesis and model setting choice. To set up the analyses correctly, we will download the excercise files to your local computer and generate the necessary control files and folder structure and a file of the beta values called <code class="language-plaintext highlighter-rouge">beta.txt</code>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd YOUR_PATH/BotanyWorkshop/BF-8/1/1
-bpp --cfile 1.1.bf.ctl
-</code></pre></div></div>
-
-<p>When it is done, complete the other 7 runs. These will go fast because I have made the MCMC very short…too short. But while you wait, there is a question about setting up the analysis. The only difference in these control files versus out previous ones is that the line <code class="language-plaintext highlighter-rouge">BayesFactorBeta = 1e-300</code> was added to the bottom of <code class="language-plaintext highlighter-rouge">1.1.bf.ctl</code>. By the 8th run, this says <code class="language-plaintext highlighter-rouge">BayesFactorBeta = 5.129089e-01</code>. My preference is to let the <a href="https://github.com/dosreislab/bppr">bppr R package</a> generate these values for my, but BPP also comes with an option called <code class="language-plaintext highlighter-rouge">bfdriver</code> or you can calculate them yourself. With the <code class="language-plaintext highlighter-rouge">bppr</code>, I generated the values for the number of points by</p>
-
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">make.beta</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s2">"step-stones"</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/network_workshop/hypothesis_testing/YOUR_MODEL/bayes_factors"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">bppr</span><span class="p">)</span><span class="w">
+</span><span class="n">powerpb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">make.beta</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s2">"step-stones"</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">make.bfctlf</span><span class="p">(</span><span class="n">powerpb</span><span class="p">,</span><span class="w"> </span><span class="n">ctlf</span><span class="o">=</span><span class="s2">"YOUR_MODEL.ctl"</span><span class="p">,</span><span class="w"> </span><span class="n">betaf</span><span class="o">=</span><span class="s2">"beta.txt"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p>You could then generate the necessary control files and folder structure and a file of the beta values called <code class="language-plaintext highlighter-rouge">beta.txt</code> with:</p>
+<p>Notice thet some new folders have been created for you. The control files within them are identical to the starting one aside from a line at the bottom specifying a beta value for the posterior.</p>
 
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">make.bfctlf</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">ctlf</span><span class="o">=</span><span class="s2">"controlfile.ctl"</span><span class="p">,</span><span class="w"> </span><span class="n">betaf</span><span class="o">=</span><span class="s2">"beta.txt"</span><span class="p">)</span><span class="w">
+<p>You will need to move the files back to the cluster at this point. Allocate an interactive node and launch the 8 jobs sequentially using the script <code class="language-plaintext highlighter-rouge">loopFiles.sh</code>.</p>
+
+<p>—-BREAK—-</p>
+
+<p>Once all of the runs are done for the 8 steps. You can calculate the marginal likelihood. Download the results (i.e. the entire <code class="language-plaintext highlighter-rouge">hypothesis\_testing</code> directory) to your local computer. In R, go to the <code class="language-plaintext highlighter-rouge">bayes\_factors</code> directory with the 8 folders for your model. For example model 1:</p>
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/network_workshop/hypothesis_testing/model1/bayes_factors"</span><span class="p">)</span><span class="w">
+</span><span class="n">model1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"beta.txt"</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p>but because I find myself working on shared university clusters, especially to distribute the jobs over many processors. You will notice a prepared control file that has all of the models included and they are commented out. I use the Perl script <code class="language-plaintext highlighter-rouge">genBFctl.pl</code> to use the <code class="language-plaintext highlighter-rouge">template.ctl</code> and <code class="language-plaintext highlighter-rouge">beta.txt</code> file to generate all of the necessary control files on the cluster. You can use that or <code class="language-plaintext highlighter-rouge">bppr</code> if more comfortable, but you will need to prepare a control file for each model.
-Once all of the runs are done for the 8 steps. You can calculate the marginal likelihood. In R, go to the directory with the 8 folders for your model. For example model 1:</p>
+<p>This works because the mcmc output from each run is called mcmc.txt. Have a look at the object created called model1 or whatever you named it. Can you find the marginal lnL and the standard error? Add those to the <a href="https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing">google sheet</a>. We can do the model probability calculations by hand, but we can generate the model probabilities and their 95% confidence intervals based on bootstrapping the posteriors from bppr. For example:</p>
 
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">bppr</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/BPP-Workshop/BF-8/1"</span><span class="p">)</span><span class="w">
-</span><span class="n">my.model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/network_workshop/hypothesis_testing_complteted/model1/bayes_factors"</span><span class="p">)</span><span class="w">
+</span><span class="n">model1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"beta.txt"</span><span class="p">)</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../../model2/bayes_factors"</span><span class="p">)</span><span class="w">
+</span><span class="n">model2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../../model3/bayes_factors/"</span><span class="p">)</span><span class="w">
+</span><span class="n">model3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../../model4/bayes_factors/"</span><span class="p">)</span><span class="w">
+</span><span class="n">model4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">bayes.factors</span><span class="p">(</span><span class="n">model1</span><span class="p">,</span><span class="n">model2</span><span class="p">,</span><span class="n">model3</span><span class="p">,</span><span class="n">model4</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p>This works because the mcmc output from each run is called mcmc.txt. Have a look at the object created called <code class="language-plaintext highlighter-rouge">my.model</code>. Can you find the marginal lnL and the standard error? Add those to the <a href="https://docs.google.com/spreadsheets/d/1tKoA4iBUqMxCz9Vi8c73tEpAbY18nT9e2hYkROMvhek/edit?usp=sharing">google sheet</a>. We can do the model probability calculations by hand, but you can use the predone runs in BF-8-completed to generate the model probabilities and their 95% confidence intervals based on a bootstrap from bppr. For example:</p>
+<p>We will try to share results to calculate the probabilities, but some predone runs in <code class="language-plaintext highlighter-rouge">hypothesis\_testing\_completed</code> so you can go through the process yourself if short on time.</p>
 
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/BotanyWorkshop/BF-8-completed/1"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../2"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../3"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../4"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../5"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../6"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"../7"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.7</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepping.stones</span><span class="p">(</span><span class="n">mcmcf</span><span class="o">=</span><span class="s2">"mcmc.txt"</span><span class="p">,</span><span class="n">betaf</span><span class="o">=</span><span class="s2">"../beta.txt"</span><span class="p">)</span><span class="w">
-</span><span class="n">bayes.factors</span><span class="p">(</span><span class="n">model.1</span><span class="p">,</span><span class="n">model.2</span><span class="p">,</span><span class="n">model.3</span><span class="p">,</span><span class="n">model.4</span><span class="p">,</span><span class="n">model.5</span><span class="p">,</span><span class="n">model.6</span><span class="p">,</span><span class="n">model.7</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
-
-<p>These are from longer MCMC runs. How do the results compare to our short runs? Model 4 is the least worst, but do you feel comfortable rejecting our more complex model 7? You can see results from <em>more steps</em> and <em>more loci</em> on sheet 3 of the <a href="https://docs.google.com/spreadsheets/d/1tKoA4iBUqMxCz9Vi8c73tEpAbY18nT9e2hYkROMvhek/edit?usp=sharing">google sheet</a>.</p>
+<p>Which model is best? Do you feel comfortable rejecting the putatively wrong model2 or the two-rate model4? You can see results from <em>more steps</em> and <em>longer MCMC</em> in the <a href="https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing">google sheet</a>. Any observations about prior choice, number of loci, or differences among analyses?</p>
 
 <h2 id="bayes-factor-approximation-with-the-savage-dickey-density-ratio">Bayes factor approximation with the Savage-Dickey density ratio</h2>
-<p>Despite the rigor and computation of Bayes factors, there is some concern for preferring unnecessarily more complex models, or perhaps your error yields confidence intervals on the model probabilities that yields the interpretation ambiguous (Tiley et al. 2023<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>). Another tool is available to us that requires a fraction of the computing - an approximation of the Bayes factor for nested models using the Savage-Dickey density ratio (Ji et al. 2023<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup>). We can approximate the Bayes factor of model 7 versus model 4 because 7 adds only one more introgression edge. In R, we</p>
+<p>Despite the rigor and computation of Bayes factors, there is some concern for preferring unnecessarily more complex models, or perhaps your error yields confidence intervals on the model probabilities that leaves the interpretation ambiguous (Tiley et al. 2023<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>). Another tool is available to us that requires a fraction of the computing - an approximation of the Bayes factor for nested models using the Savage-Dickey density ratio (Ji et al. 2023<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup>). We can approximate the Bayes factor of model 4 versus model 3 or model 2 because model 4 adds only one more introgression edge. In R, we</p>
 
-<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/BPP-Workshop/Converge-completed/7"</span><span class="p">)</span><span class="w">
-</span><span class="n">model.7.mcmc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">"7.1.mcmc"</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"YOUR_PATH/network_workshop/hypothesis_testing/model4/convergence"</span><span class="p">)</span><span class="w">
+</span><span class="n">posterior1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">"1/mcmc.txt"</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
 </span><span class="c1"># The epsilon values from Tiley et al. (2023) were 0.01 and 0.001.</span><span class="w">
 </span><span class="n">cutoff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.01</span><span class="w">
-</span><span class="c1"># The number of posterior samples where the introgression probability from D. ludoviciana to D. goldiana is less than cutoff</span><span class="w">
+</span><span class="c1"># The number of posterior samples where the introgression probability from *A. digitata* to *A. grandidierii* is less than cutoff</span><span class="w">
 </span><span class="n">nlowphi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
-</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">model.7.mcmc</span><span class="o">$</span><span class="n">phi_l..k</span><span class="p">))</span><span class="w">
+</span><span class="c1"># We will have to take 1 - phi because we are interested in gene flow from node w into node x</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">posterior1</span><span class="o">$</span><span class="n">phi_x..e</span><span class="p">))</span><span class="w">
 </span><span class="p">{</span><span class="w">
-	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model.7.mcmc</span><span class="o">$</span><span class="n">phi_l..k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cutoff</span><span class="p">)</span><span class="w">
+	</span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="m">1</span><span class="o">-</span><span class="n">posterior1</span><span class="o">$</span><span class="n">phi_x..e</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cutoff</span><span class="p">)</span><span class="w">
 	</span><span class="p">{</span><span class="w">
 		</span><span class="n">nlowphi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlowphi</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w">
 	</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="c1"># The posterior probability that the introgression probability of interest is less than our negligible region</span><span class="w">
-</span><span class="n">posterior.probability</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlowphi</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">model.7.mcmc</span><span class="o">$</span><span class="n">phi_l..k</span><span class="p">)</span><span class="w">
-</span><span class="c1"># The Savage-Dickey Ratio approximation of the Bayes factor for model7/model4</span><span class="w">
+</span><span class="n">posterior.probability</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlowphi</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">posterior1</span><span class="o">$</span><span class="n">phi_x..e</span><span class="p">)</span><span class="w">
+</span><span class="c1"># The Savage-Dickey Ratio approximation of the Bayes factor for model4/model3</span><span class="w">
 </span><span class="n">sd.bayes.factor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cutoff</span><span class="o">/</span><span class="n">posterior.probability</span><span class="w">
 </span></code></pre></div></div>
 
-<p>We can consult the tables of Kass and Raftery (1995)<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> to interpret our Bayes factor result. Note this is not on any log scale. I calculated <strong>0.04014452</strong>, which means we can reject the 2-rate model, and this happens to be about the 3% significance level. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values.</p>
+<p>We can consult the tables of Kass and Raftery (1995)<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">6</a></sup> to interpret our Bayes factor result. Note this is not on a log Bayes factor. I calculated about <strong>1.5</strong>, which means we do not have strong support for the two-rate model, but we cannot really reject it either. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values. Is this stable across independent MCMC analyses of model 4 too?</p>
 
 <h2 id="limits-to-biological-interpretations">Limits to Biological Interpretations</h2>
-<p>In our <em>Dryopteris</em> test case, we are lucky such that the biology is already worked out over years of meticulous chromosome work combined with multiple molecular studies. Unknown systems do not have this advantage and the lifetime of an investigation may not be long enough for long-term experimental work. It can be tempting to use network methods to infer the process of hybridization or polyploidization, but I strongly caution against this. Processes other than hybrid speciation can explain high introgression probabilities (Tiley et al. 2023<sup id="fnref:4:1" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>) and inferring extant parental species can be dubious if there are sampling gaps among species. But we have seen in this limited example that full-likelihood methods perform well at characterizing the relationship of our <em>Dryopteris</em> species even if the model is probably much simpler (i.e. a single episodic origin) than the truth. The parameter estimates might be interesting, but we can also calculate probabilities for competing models. Luckily, our approaches do not seem to only favor complexity. If the model probabilities are too close for comfort and if your hypotheses are well constrained, approximation of the Bayes factor with the Savage-Dickey density ratio is simple and might be helpful for us to sort out technical artifacts of other analyses versus biologically meaningful information.</p>
+<p>In our baobab test data, we are lucky such that the patterns are corroborated by independent analyses and some expert knowledge of the system. Unknown systems do not have this advantage and the lifetime of an investigation may not be long enough to move from hypotheses to functional genomics. It can be tempting to use network methods to infer the process of hybridization or polyploidization, but I strongly caution against this. Processes other than hybrid speciation can explain high introgression probabilities (Tiley et al. 2023<sup id="fnref:4:1" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>) and inferring extant parental species can be dubious if there are sampling gaps among species, much like how including the missing taxa might change interpretations of the analyses here. But we have seen in this limited example that full-likelihood methods perform well at characterizing the relationship of baobab species even if the model is probably much simpler (i.e. a single episodic origin) than the truth. The parameter estimates might be interesting and we can calculate probabilities for competing models. Luckily, our approaches do not seem to only favor complexity. If the model probabilities are too close for comfort and if your hypotheses are well constrained, approximation of the Bayes factor with the Savage-Dickey density ratio is simple and might be helpful for us to sort out technical artifacts of other analyses versus biologically meaningful information.</p>
 
 <h2 id="references">References</h2>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p>Tiley GP, Crowl AA, Manos PS, Sessa EB, Solís-Lemus C, Yoder AD, Burleigh JG. 2021. <a href="https://www.biorxiv.org/content/10.1101/2021.05.04.442457v1.abstract">Phasing alleles improves network inference with allopolyploids.</a> <em>bioRxiv</em> doi: https://doi.org/10.1101/2021.05.04.442457<br /> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+      <p>Karimi N, Grover CE, Gallagher JP, Wendel JF, Ané C, Baum DA. 2020. Reticulate evolution helps explain apparent homoplasy in floral biology and pollination in baobabs (Adansonia; Bombacoideae; Malvaceae). Syst Biol. 69:462-478.<br /> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
       <p>Xie W, Lewis PO, Fan Y, Kuo L, Chen M-H. 2011. <a href="https://academic.oup.com/sysbio/article/60/2/150/2461669?login=false">Improving marginal likelihood estimation for Bayesian phylogenetic model selection.</a> <em>Syst Biol</em> 60:150-160<br /> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
