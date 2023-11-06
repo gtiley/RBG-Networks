@@ -36,11 +36,11 @@ Instructions for making all necessary software available on the cluster are [her
 |8 Nov | 8:00-9:00       | Jodrell - Seminar Room    | Command Line and HPC Primer (Optional)                            |  [GitHub page]({{site.baseurl}}/activities/introduction/)          | George Tiley        |
 |8 Nov | 9:00-10:15      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
 |8 Nov | 10:15-10:45     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
-|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Introduction to the Multispecies Coalescent with Gene Flow        |  TBD                                                               | Ziheng Yang         |
+|8 Nov | 9:00-12:00      | Jodrell - Seminar Room    | Analyses of genomic data under the MSC with BPP                   |  TBD                                                               | Tomas Flouri        |
 |8 Nov | 12:00-13:00     | The Orangery              | Lunch                                                             |                                                                    |                     |
-|8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|8 Nov | 13:00-18:00     | Herbarium - Training Room | Models of Gene Flow (introgression and migration)                 |  TBD                                                               | Ziheng Yang         |
 |8 Nov | 15:00-15:30     | Herbarium - Tea Room      | Break                                                             |                                                                    |                     |
-|8 Nov | 15:30-17:30     | Herbarium - Training Room | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|8 Nov | 15:30-17:30     | Herbarium - Training Room | Analysis under the MSC-I and MSC-M models with BPP                |  TBD                                                               | Tomas Flouri        |
 |      |                 |                           |                                                                   |                                                                    |                     |
 |9 Nov | 9:00-10:15      | Jodrell - Bennett Room    | Hypothesis Testing and Model Selection with Networks              |  [GitHub page]({{site.baseurl}}/activities/hypothesis_testing/)    | George Tiley        |
 |9 Nov | 10:15-10:45     | Jodrell - Tea Room        | Break                                                             |                                                                    |                     |
@@ -69,11 +69,11 @@ There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas]
 |14 Nov| 8:00-9:00       | Conference Room           | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
 |14 Nov| 9:00-10:15      | Conference Room           | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
 |14 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
-|14 Nov| 9:00-12:00      | Conference Room           | Introduction to the Multispecies Coalescent with Gene Flow        |  TBD                                                               | Ziheng Yang         |
+|14 Nov| 9:00-12:00      | Conference Room           | Analyses of genomic data under the MSC with BPP                   |  TBD                                                               | Tomas Flouri        |
 |14 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
-|14 Nov| 13:00-18:00     | Conference Room           | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|14 Nov| 13:00-18:00     | Conference Room           | Models of Gene Flow (introgression and migration)                 |  TBD                                                               | Ziheng Yang         |
 |14 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
-|14 Nov| 15:30-17:30     | Conference Room           | Models of Gene Flow and Full-Likelihood Analyses with BPP         |  TBD                                                               | Tomas Flouri        |
+|14 Nov| 15:30-17:30     | Conference Room           | Analysis under the MSC-I and MSC-M models with BPP                |  TBD                                                               | Tomas Flouri        |
 |      |                 |                           |                                                                   |                                                                    |                     |
 |15 Nov| 9:00-10:15      | Conference Room           | Hypothesis Testing and Model Selection with Networks              |  TBD                                                               | George Tiley        |
 |15 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
@@ -93,4 +93,4 @@ There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas]
 |16 Nov| 18:00           | TBD                       | Go to the pub                                                     |                                                                    | All                 |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 
-Coffee and snacks are provided at breaks. Participants are responsible for their own lunch.
+Coffee and snacks are provided at breaks. Participants are responsible for their own lunch but we will break at the Canteen every day at 12:00.
