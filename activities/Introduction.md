@@ -81,10 +81,8 @@ Log back on and go to your `introduction` directory and go `ls`. We want to look
 #SBATCH --mail-type=FAIL,END
 #SBATCH --time=6:00:00
 #SBATCH --mem-per-cpu=2G
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --partition=short
+#SBATCH --cpus-per-task=4
+#SBATCH --partition=debug
 [[ -d $SLURM_SUBMIT_DIR ]] && cd $SLURM_SUBMIT_DIR
 
 echo "Date              = $(date)"
@@ -95,8 +93,6 @@ echo "Number of Nodes Allocated      = $SLURM_JOB_NUM_NODES"
 echo "Number of Tasks Allocated      = $SLURM_NTASKS"
 echo "Number of Cores/Task Allocated = $SLURM_CPUS_PER_TASK"
 
-#To specify the above directives for interactive job go:
-#srun --nodes=1 --ntasks=1 --cpus-per-task=1 --mem-per-cpu=2G --partition=short --pty bash
 
 for i in {1..10}
 do
@@ -110,7 +106,7 @@ The job will complete quickly, but if you are fast enough you might find it in t
 
 Most of our activities today will happen interactively. This is largely for educational purposes, but it can be helpful for checking analyses are working as intended before submitting a job for days or weeks. Try allocating some resources on an interactive node like this:
 ```bash
-srun --nodes=1 --ntasks=1 --cpus-per-task=1 --mem-per-cpu=2G --partition=short --pty bash
+srun --cpus-per-task=4 --mem-per-cpu=2G --partition=debug --pty bash
 ```
 You are no longer on the *login* node and you should now be on a *compute* node. Now, you can safely execute the simple counting bash script by `./count.sh`
 

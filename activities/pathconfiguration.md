@@ -20,3 +20,7 @@ mdl -h
 julia --version
 ```
 
+Remember when running something on the crop diversity cluster to grab an interactive node. 
+```bash
+srun --cpus-per-task=4 --mem-per-cpu=2G --partition=debug --pty bash
+```

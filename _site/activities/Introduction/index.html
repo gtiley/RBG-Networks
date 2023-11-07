@@ -115,10 +115,8 @@ scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/int
 <span class="c">#SBATCH --mail-type=FAIL,END</span>
 <span class="c">#SBATCH --time=6:00:00</span>
 <span class="c">#SBATCH --mem-per-cpu=2G</span>
-<span class="c">#SBATCH --nodes=1</span>
-<span class="c">#SBATCH --ntasks=1</span>
-<span class="c">#SBATCH --cpus-per-task=1</span>
-<span class="c">#SBATCH --partition=short</span>
+<span class="c">#SBATCH --cpus-per-task=4</span>
+<span class="c">#SBATCH --partition=debug</span>
 <span class="o">[[</span> <span class="nt">-d</span> <span class="nv">$SLURM_SUBMIT_DIR</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$SLURM_SUBMIT_DIR</span>
 
 <span class="nb">echo</span> <span class="s2">"Date              = </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">"</span>
@@ -129,8 +127,6 @@ scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/int
 <span class="nb">echo</span> <span class="s2">"Number of Tasks Allocated      = </span><span class="nv">$SLURM_NTASKS</span><span class="s2">"</span>
 <span class="nb">echo</span> <span class="s2">"Number of Cores/Task Allocated = </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="s2">"</span>
 
-<span class="c">#To specify the above directives for interactive job go:</span>
-<span class="c">#srun --nodes=1 --ntasks=1 --cpus-per-task=1 --mem-per-cpu=2G --partition=short --pty bash</span>
 
 <span class="k">for </span>i <span class="k">in</span> <span class="o">{</span>1..10<span class="o">}</span>
 <span class="k">do
@@ -143,7 +139,7 @@ scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/int
 <p>The job will complete quickly, but if you are fast enough you might find it in the queue with <code class="language-plaintext highlighter-rouge">squeue -u YOUR_USER_NAME</code>. Check the log file to see that it ran correctly. There should be some information about resource allocation and a list of numbers 1 to 10.</p>
 
 <p>Most of our activities today will happen interactively. This is largely for educational purposes, but it can be helpful for checking analyses are working as intended before submitting a job for days or weeks. Try allocating some resources on an interactive node like this:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun <span class="nt">--nodes</span><span class="o">=</span>1 <span class="nt">--ntasks</span><span class="o">=</span>1 <span class="nt">--cpus-per-task</span><span class="o">=</span>1 <span class="nt">--mem-per-cpu</span><span class="o">=</span>2G <span class="nt">--partition</span><span class="o">=</span>short <span class="nt">--pty</span> bash
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun <span class="nt">--cpus-per-task</span><span class="o">=</span>4 <span class="nt">--mem-per-cpu</span><span class="o">=</span>2G <span class="nt">--partition</span><span class="o">=</span>debug <span class="nt">--pty</span> bash
 </code></pre></div></div>
 <p>You are no longer on the <em>login</em> node and you should now be on a <em>compute</em> node. Now, you can safely execute the simple counting bash script by <code class="language-plaintext highlighter-rouge">./count.sh</code></p>
 
