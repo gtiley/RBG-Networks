@@ -29,19 +29,28 @@ mkdir network_workshop
 cd network_workshop
 pwd
 ls
-cp -r /mnt/shared/scratch/gtiley/introduction .
+wget https://github.com/gtiley/RBG-Networks/blob/main/exercises/introduction.tgz
 cd introduction
 pwd
 ls
 ```
-Several things happened here. We *change directory* with `cd`  and check the location of the *present working directory* with `pwd`. We then *list* files with `ls`. These are UNIX commands that will help us navigate the cluster. We then *make directory* named network_workshop with `mkdir`. It is important to avoid special characters and spaces when naming directories and files on the cluster.
+Several things happened here. We *change directory* with `cd`  and check the location of the *present working directory* with `pwd`. We then *list* files with `ls`. These are UNIX commands that will help us navigate the cluster. We then *make directory* named network_workshop with `mkdir`. It is important to avoid special characters and spaces when naming directories and files on the cluster. Some files can be downloaded from elsewhere via the internet with `wget`.
 
 
 Notice that a file exists in the `introduction` directory. Let's have a look and edit it with `nano hello.txt`. You can only use your arrow keys to move around but you can edit the text directly on the cluster without any graphical software. This is a handy skill to have. These text editors, one of which is `nano`, have various capabilities, but the important things to remember are `control + o` to save and `control + x` to exit. Try to open, edit, and save changes to `hello.txt` before closing. You can admire your changes to the file with the command `less`. Try `less hello.txt` to view the file contents but you will exit `less` with `control + z`.
 
 Try making a new file called `my_dreams.txt`. Do do this, go `nano my_dreams.txt`. You could type something like "I am an expert on phylogenetic networks!" and save and exit.
 
-Let's combine two files with the *concatenate* function `cat`. Go `cat hello.txt my_dreams.txt > the_truth.txt`. Now look at the new file you create!
+Let's combine two files with the *concatenate* command `cat`. Go `cat hello.txt my_dreams.txt > the_truth.txt`. Now look at the new file you create!
+
+A couple of other important commands to know are *copy* `cp` and *move* `mv`. Try the following
+```
+cp the_truth.txt copied_file.txt
+ls
+mv the_truth.txt moved_file.txt
+ls
+```
+`cp` works like the name says it will. It copied the file and kept the original. `mv` renamed the file in this case. You can *copy* and *move* files to other directories too. It is not necessary to change the file name.
 
 Now you can access the cluster, move files around, and create or edit them.
 
