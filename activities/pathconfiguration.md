@@ -24,3 +24,9 @@ Remember when running something on the crop diversity cluster to grab an interac
 ```bash
 srun --cpus-per-task=4 --mem-per-cpu=2G --partition=debug --pty bash
 ```
+
+If using the short address gruffalo did not work because of problems with setting up the ssh key pair or the config file, you can try
+
+```
+YOUR_USER_NAME@gruffalo.cropdiversity.ac.uk
+```

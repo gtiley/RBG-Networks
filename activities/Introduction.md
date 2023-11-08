@@ -77,6 +77,12 @@ cd introduction
 scp *.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction
 ```
 
+If using `scp` and *gruffalo* did not work, try providing the full address by
+```
+scp -r YOUR_USER_NAME@gruffalo.cropdiversity.ac.uk:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction .
+scp *.txt YOUR_USER_NAME@gruffalo.cropdiversity.ac.uk:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction
+```
+
 ## Running submission scripts
 
 On a cluster, there are *login* nodes and *compute* nodes. You **never** run an actual analysis that will require notable memory and disk space on a login node (where we have been this whole time). Instead, a *scheduler* is used to manage requests from users, and queue and execute them in an orderly manner.
