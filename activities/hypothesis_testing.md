@@ -10,7 +10,7 @@ Log on to the cluster and copy the data and pre-configured control files for tod
 ```
 ssh gruffalo
 cd /mnt/shared/scratch/YOUR_USER_NAME/network_workshop
-cp -r /mnt/shared/scratch/gtiley/network_workshop/hypothesis_testing .
+wget https://github.com/gtiley/RBG-Networks/raw/main/exercises/hypothesis_testing.tgz
 ```
 
 [comment]: # A copy of the directory is available for local download here.
@@ -33,7 +33,7 @@ Formatting networks correctly can be difficult, especially when we want to speci
 
 ```
 tree (Smic,(Agre,(Adig,(Arub,(Agra,Amad)e)d)c)b)a;
-hybridization c Adig, e Agra as w x tau=yes, yes phi=0.2
+hybridization c Adig, e Agra as w x tau=no, yes phi=0.2
 ```
 
 Here, we have allowed the divergence time of the introgression edges from their parental lineages to be different from the age of introgression. We specify an initial *introgression probability* of 0.2. The *introgression probability* will be sampled by the MCMC algorithm, so this is only a starting value. We can generate the network used for our analyses with the following command:
@@ -45,11 +45,11 @@ bpp --msci-create msci-create.in > msci-create.out
 Below is the resulting network that we can add to our control file. **Bonus Activity!** Try to draw the network yourself from the text string and convince yourself this is correct.
 
 ```
-(Smic, (Agre,((x[&phi=0.200000,tau-parent=yes],Adig)w,(Arub,((Agra)x[&phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
+(Smic, (Agre,((x[&phi=0.200000,tau-parent=no],Adig)w,(Arub,((Agra)x[&phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
 ```
 
 ### The BPP control file
-All aspects of data input, results output, and the model specification are done within the *control file*. An example looks like this:
+All aspects of data input, results output, and the model specification are done within the *control file*. Here is an example for model 2 that includes episodic gene flow from *A. digitata* into *A. grandidierii*.
 
 ```
           seed =  -1
@@ -69,7 +69,7 @@ All aspects of data input, results output, and the model specification are done 
         phase = 0 0 0 0 0 0
                   
        usedata = 1  * 0: no data (prior); 1:seq like
-         nloci = 40  * number of data sets in seqfile
+         nloci = 100  * number of data sets in seqfile
 
      cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
 
@@ -89,6 +89,7 @@ All aspects of data input, results output, and the model specification are done 
        threads = 4 1 1
 ```
 
+<!--
 All of the options and parameters are explained very well in the [BPP manual](https://github.com/bpp/bpp), but here is a short explanation:
 - **seed** = random number used to generate starting conditions for the MCMC algorithm. -1 uses the system clock to 
 - **seqfile** = input sequences. BPP uses a phylip format with all loci in one file
@@ -113,6 +114,7 @@ All of the options and parameters are explained very well in the [BPP manual](ht
 - **sampfreq** = the number of samples to skip before saving one after the burnin is complete
 - **nsample** = the total number of posterior samples to save from the analysis
 - **threads** = BPP can be faster by distributing loci among different threads. Here, we can assume everyone has at least 4 available
+-->
 
 ## Parameter estimation and convergence
 
@@ -138,9 +140,16 @@ R CMD BATCH plotPosteriors.R
 Alternatively, you can run the R script from Rstudio or the R shell. A quick check of all of the parameter posteriors is that they look pretty similar. I think a good indication of convergence is a comparison of the median node heights (divergence times). If everything went well, our estimates should be very close to a one-to-one relationship.
 
 {:refdef: style="text-align: center;"}
-![Checking convergence of node heights across runs]({{site.baseurl}}/images/NodeHeights.png)
+![Checking convergence of node heights across runs]({{site.baseurl}}/images/NodeHeights-short.png)
 {: refdef}
-**Median node heights from four MCMC runs for the two-rate MSCi model-** The posteriors from runs 1 and 2 or 3 and 4 are combined to display in the scatter plot. The dotted line is the one-to-one line. The deviations show we should benefit from longer MCMC anlayses.
+**Median node heights from four MCMC runs for the two-rate MSCi model with a total chain length 50,000-** The posteriors from runs 1 and 2 or 3 and 4 are combined to display in the scatter plot. The dotted line is the one-to-one line. The deviations show we should benefit from longer MCMC anlayses.
+
+
+{:refdef: style="text-align: center;"}
+![Checking convergence of node heights across runs]({{site.baseurl}}/images/NodeHeights-long.png)
+{: refdef}
+**Median node heights from four MCMC runs for the two-rate MSCi model with a total chain length of 200,000-** The posteriors from runs 1 and 2 or 3 and 4 are combined to display in the scatter plot. The dotted line is the one-to-one line. The one-to-one correspondance suggests a decent quality MCMC sample.
+
 
 Everything should look good enough to move forward with the excercise. We could benefit from a larger sample frequency and probably an increased burnin here, but it is acceptable. For reporting our results, there are two choices:
 1. Report the results of the first MCMC analysis, since everything converged
@@ -152,7 +161,7 @@ You are fine doing either but depending on your reviewer, they might tell you to
        seqfile = ../../../baobab_data/baobab.100.bppDat
       Imapfile = ../../../baobab_data/baobab.6taxa.spMap
        outfile = combined.out
-      mcmcfile = combined.mcmc.txt
+      mcmcfile = combined.mcmc
 
   speciesdelimitation = 0
          speciestree = 0
@@ -161,11 +170,11 @@ You are fine doing either but depending on your reviewer, they might tell you to
 
   species&tree = 6  Adig Agra Agre Amad Arub Smic
                     3 2 1 2 2 1
-                  (Smic, (Agre,((x[&phi=0.200000,tau-parent=yes],Adig)w,(Arub,((Agra)x[&phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
+                  (Smic, (Agre,((x[&phi=0.200000,tau-parent=no],Adig)w,(Arub,((Agra)x[&phi=0.800000,tau-parent=yes],Amad)e)d)c)b)a;
         phase = 0 0 0 0 0 0
                   
        usedata = 1  * 0: no data (prior); 1:seq like
-         nloci = 40  * number of data sets in seqfile
+         nloci = 100  * number of data sets in seqfile
 
      cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
 
@@ -196,10 +205,11 @@ Likelihood methods are great because they often allow us to compare and rank mod
 
 |Model|Description|
 |-----|-----------|
-|1    |The backbone species tree|
+|1    |The backbone species tree from Karimi et al. (2020)|
 |2    |Episodic introgression from *A. digitata* into *A. grandidierii*|
 |3    |Episodic introgression from *A. rubrostipa* into *A. madagascariensis*|
 |4    |Two episodic introgression events|
+|5    |Tomas' species tree |
 
 
 Marginal likelihoods are time-intensive, because they require us to generate an MCMC sample for multiple values of **beta**. BPP provides some tools to help you determine appropriate values of **beta**, but we will focus on using the [bppr R package](https://github.com/dosreislab/bppr).
@@ -211,7 +221,7 @@ Some files have been prepared for you. Everyone will be responsible for at least
 ```R
 setwd("YOUR_PATH/network_workshop/hypothesis_testing/YOUR_MODEL/bayes_factors")
 library(bppr)
-powerpb <- make.beta(8,method="step-stones",a=5)
+powerpb <- make.beta(8,method="gauss-quad",a=5)
 make.bfctlf(powerpb, ctlf="YOUR_MODEL.ctl", betaf="beta.txt")
 ```
 
@@ -225,25 +235,27 @@ You will need to move the files back to the cluster at this point. Allocate an i
 Once all of the runs are done for the 8 steps. You can calculate the marginal likelihood. Download the results (i.e. the entire `hypothesis\_testing` directory) to your local computer. In R, go to the `bayes\_factors` directory with the 8 folders for your model. For example model 1:
 ```R
 setwd("YOUR_PATH/network_workshop/hypothesis_testing/model1/bayes_factors")
-model1 <- stepping.stones(mcmcf="mcmc.txt",betaf="beta.txt")
+model1 <- gauss.quad(mcmcf="mcmc.txt",betaf="beta.txt")
 ```
 
-This works because the mcmc output from each run is called mcmc.txt. Have a look at the object created called model1 or whatever you named it. Can you find the marginal lnL and the standard error? Add those to the [google sheet](https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing). We can do the model probability calculations by hand, but we can generate the model probabilities and their 95% confidence intervals based on bootstrapping the posteriors from bppr. For example:
+This works because the mcmc output from each run is called mcmc.txt. Have a look at the object created called model1 or whatever you named it. Can you find the marginal lnL and the standard error? Add those to the [google sheet](https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing). 
+
+We can do the model probability calculations by hand, but we can generate the model probabilities and their 95% confidence intervals based on bootstrapping the posteriors from bppr. To get the experience, try calculating the marginal likelihoods and their probabilities on some pre-completed runs in `hypothesis\_testing\_completed`. For example:
 
 ```R
 setwd("YOUR_PATH/network_workshop/hypothesis_testing_complteted/model1/bayes_factors")
-model1 <- stepping.stones(mcmcf="mcmc.txt",betaf="beta.txt")
+model1 <- gauss.quad(mcmcf="mcmc.txt",betaf="beta.txt")
 setwd("../../model2/bayes_factors")
-model2 <- stepping.stones(mcmcf="mcmc.txt",betaf="../beta.txt")
+model2 <- gauss.quad(mcmcf="mcmc.txt",betaf="../beta.txt")
 setwd("../../model3/bayes_factors/")
-model3 <- stepping.stones(mcmcf="mcmc.txt",betaf="../beta.txt")
+model3 <- gauss.quad(mcmcf="mcmc.txt",betaf="../beta.txt")
 setwd("../../model4/bayes_factors/")
-model4 <- stepping.stones(mcmcf="mcmc.txt",betaf="../beta.txt")
+model4 <- gauss.quad(mcmcf="mcmc.txt",betaf="../beta.txt")
+setwd("../../model5/bayes_factors/")
+model5 <- gauss.quad(mcmcf="mcmc.txt",betaf="../beta.txt")
 
-bayes.factors(model1,model2,model3,model4)
+bayes.factors(model1,model2,model3,model4,model5)
 ```
-
-We will try to share results to calculate the probabilities, but some predone runs in `hypothesis\_testing\_completed` so you can go through the process yourself if short on time.
 
 Which model is best? Do you feel comfortable rejecting the putatively wrong model2 or the two-rate model4? You can see results from *more steps* and *longer MCMC* in the [google sheet](https://docs.google.com/spreadsheets/d/1pp2oGYEx41jWXttlosfIQP1USTY-ALxc6k4Y4MjViYs/edit?usp=sharing). Any observations about prior choice, number of loci, or differences among analyses?
 
@@ -252,26 +264,28 @@ Despite the rigor and computation of Bayes factors, there is some concern for pr
 
 ```R
 setwd("YOUR_PATH/network_workshop/hypothesis_testing/model4/convergence")
-posterior1 <- read.table(file="1/mcmc.txt",header=TRUE,sep="\t")
+posterior <- read.table(file="1/mcmc.txt",header=TRUE,sep="\t")
 # The epsilon values from Tiley et al. (2023) were 0.01 and 0.001.
 cutoff <- 0.01
 # The number of posterior samples where the introgression probability from *A. digitata* to *A. grandidierii* is less than cutoff
 nlowphi <- 0
 # We will have to take 1 - phi because we are interested in gene flow from node w into node x
-for (i in 1:length(posterior1$phi_x..e))
+for (i in 1:length(posterior$phi_x..w))
 {
-	if ((1-posterior1$phi_x..e[i]) < cutoff)
+	if (posterior1$phi_x..w[i] < cutoff)
 	{
 		nlowphi <- nlowphi + 1
 	}
 }
 # The posterior probability that the introgression probability of interest is less than our negligible region
-posterior.probability <- nlowphi/length(posterior1$phi_x..e)
+posterior.probability <- nlowphi/length(posterior$phi_x..w)
 # The Savage-Dickey Ratio approximation of the Bayes factor for model4/model3
 sd.bayes.factor <- cutoff/posterior.probability
 ```
 
-We can consult the tables of Kass and Raftery (1995)[^6] to interpret our Bayes factor result. Note this is not on a log Bayes factor. I calculated about **1.5**, which means we do not have strong support for the two-rate model, but we cannot really reject it either. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values. Is this stable across independent MCMC analyses of model 4 too?
+We can consult the tables of Kass and Raftery (1995)[^6] to interpret our Bayes factor result. Note this is not on a log Bayes factor. I calculated about **0.02321263**, which means we do not have strong support to *reject* the two-rate model. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values. Is this stable across independent MCMC analyses of model 4 too?
+
+As a side note, I calculated **0.02696508** when increasing the total MCMC length from 50,000 to 200,000 generations.
 
 ## Limits to Biological Interpretations
 In our baobab test data, we are lucky such that the patterns are corroborated by independent analyses and some expert knowledge of the system. Unknown systems do not have this advantage and the lifetime of an investigation may not be long enough to move from hypotheses to functional genomics. It can be tempting to use network methods to infer the process of hybridization or polyploidization, but I strongly caution against this. Processes other than hybrid speciation can explain high introgression probabilities (Tiley et al. 2023[^4]) and inferring extant parental species can be dubious if there are sampling gaps among species, much like how including the missing taxa might change interpretations of the analyses here. But we have seen in this limited example that full-likelihood methods perform well at characterizing the relationship of baobab species even if the model is probably much simpler (i.e. a single episodic origin) than the truth. The parameter estimates might be interesting and we can calculate probabilities for competing models. Luckily, our approaches do not seem to only favor complexity. If the model probabilities are too close for comfort and if your hypotheses are well constrained, approximation of the Bayes factor with the Savage-Dickey density ratio is simple and might be helpful for us to sort out technical artifacts of other analyses versus biologically meaningful information.
