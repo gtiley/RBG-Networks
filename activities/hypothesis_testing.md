@@ -243,7 +243,7 @@ This works because the mcmc output from each run is called mcmc.txt. Have a look
 We can do the model probability calculations by hand, but we can generate the model probabilities and their 95% confidence intervals based on bootstrapping the posteriors from bppr. To get the experience, try calculating the marginal likelihoods and their probabilities on some pre-completed runs in `hypothesis\_testing\_completed`. For example:
 
 ```R
-setwd("YOUR_PATH/network_workshop/hypothesis_testing_complteted/model1/bayes_factors")
+setwd("YOUR_PATH/network_workshop/hypothesis_testing/completed_runs/model1/bayes_factors")
 model1 <- gauss.quad(mcmcf="mcmc.txt",betaf="beta.txt")
 setwd("../../model2/bayes_factors")
 model2 <- gauss.quad(mcmcf="mcmc.txt",betaf="../beta.txt")
