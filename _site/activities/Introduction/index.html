@@ -103,12 +103,12 @@ ls
 mkdir </span>network_workshop
 <span class="nb">cd </span>network_workshop
 <span class="nb">pwd
-</span>scp <span class="nt">-r</span> gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction <span class="nb">.</span>
+</span>scp <span class="nt">-r</span> gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction <span class="nb">.</span>
 <span class="nb">ls</span>
 </code></pre></div></div>
 <p>The entire <code class="language-plaintext highlighter-rouge">introduction</code> directory should now be on <em>your</em> computer. The entire directory was download because we used the <code class="language-plaintext highlighter-rouge">-r</code> <em>flag</em> which means <em>recursively</em>. Feel free to create new files or change existing ones with your graphical text editor (BBedit, NotePad++, or otherwise) and save them. You can put files from your computer to the cluster with <code class="language-plaintext highlighter-rouge">scp</code> too.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>introduction
-scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction
+scp <span class="k">*</span>.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction
 </code></pre></div></div>
 
 <h2 id="running-submission-scripts">Running submission scripts</h2>

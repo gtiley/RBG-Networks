@@ -68,13 +68,13 @@ ls
 mkdir network_workshop
 cd network_workshop
 pwd
-scp -r gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction .
+scp -r gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction .
 ls
 ```
 The entire `introduction` directory should now be on *your* computer. The entire directory was download because we used the `-r` *flag* which means *recursively*. Feel free to create new files or change existing ones with your graphical text editor (BBedit, NotePad++, or otherwise) and save them. You can put files from your computer to the cluster with `scp` too.
 ```bash
 cd introduction
-scp *.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/introduction
+scp *.txt gruffalo:/mnt/shared/scratch/YOUR_USER_NAME/network_workshop/introduction
 ```
 
 ## Running submission scripts
