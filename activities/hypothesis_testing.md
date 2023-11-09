@@ -125,9 +125,10 @@ Change into `model1/convergence/1`  and run BPP on the prepared control file by:
 ```
 cd model1/convergence
 ls
+mkdir 1
 cd 1
 ls
-bpp --cfile model1.ctl
+bpp --no-pin --cfile model1.ctl
 ```
 
 The MCMC analysis will start. It should take about 5 minutes for our simplest model with 6 species and 100 loci. The MCMC settings are too short, but necessary for the time constraints. While that is running, what information can you get from BPP's screen output. Try completing 4 runs for a model and analyzing convergence. A helpful tool is [Tracer](https://github.com/beast-dev/tracer), but BPP provides some helpful summary statistics too. An R script is provided to help plot posteriors for all parameters too. If we are satisfied, we can use one MCMC analysis from BPP or combine them to report parameter estimates. The plotting script can be executed from the command line with 
@@ -154,7 +155,7 @@ Alternatively, you can run the R script from Rstudio or the R shell. A quick che
 Everything should look good enough to move forward with the excercise. We could benefit from a larger sample frequency and probably an increased burnin here, but it is acceptable. For reporting our results, there are two choices:
 1. Report the results of the first MCMC analysis, since everything converged
 2. Combine the MCMC sample across runs, if we need to increase our sample size
-You are fine doing either but depending on your reviewer, they might tell you to do the other. If you want to generate the BPP output for the combined sample, we can concatenate the MCMC output from the 4 runs together, but there is only 1 header line. This was done for `combined.mcmc`. Then we need to make a new control file `combined.ctl` with some edits:
+You are fine doing either but depending on your reviewer, they might tell you to do the other. If you want to generate the BPP output for the combined sample, we can concatenate the MCMC output from the 4 runs together. Make a new file called `combined.mcmc` by copying and pasting the mcmc output together, but only keep one header line. Then we need to make a new control file `combined.ctl` with some edits:
 
 ```
           seed =  -1
@@ -269,10 +270,10 @@ posterior <- read.table(file="1/mcmc.txt",header=TRUE,sep="\t")
 cutoff <- 0.01
 # The number of posterior samples where the introgression probability from *A. digitata* to *A. grandidierii* is less than cutoff
 nlowphi <- 0
-# We will have to take 1 - phi because we are interested in gene flow from node w into node x
+# We are looking at the rate of episodic gene flow from node w into node x. The BPP mcmc.txt file has phi_x<-w in the header, but R does not allow mathematical symbols in headers and "<-" is converted to ".."
 for (i in 1:length(posterior$phi_x..w))
 {
-	if (posterior1$phi_x..w[i] < cutoff)
+	if (posterior$phi_x..w[i] < cutoff)
 	{
 		nlowphi <- nlowphi + 1
 	}
@@ -283,7 +284,7 @@ posterior.probability <- nlowphi/length(posterior$phi_x..w)
 sd.bayes.factor <- cutoff/posterior.probability
 ```
 
-We can consult the tables of Kass and Raftery (1995)[^6] to interpret our Bayes factor result. Note this is not on a log Bayes factor. I calculated about **0.02321263**, which means we do not have strong support to *reject* the two-rate model. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values. Is this stable across independent MCMC analyses of model 4 too?
+We can consult the tables of Kass and Raftery (1995)[^6] to interpret our Bayes factor result. Note this is not a log Bayes factor. I calculated about **0.02321263**, which means we do not have strong support to *reject* the two-rate model. Try repeating the calculation with a smaller cutoff of 0.001 to ensure stability of our results. Thus, the Savage-Dickey ratio approximation can be an good strategy if your models are nested and you can generate good posteriors of the phi values. Is this stable across independent MCMC analyses of model 4 too?
 
 As a side note, I calculated **0.02696508** when increasing the total MCMC length from 50,000 to 200,000 generations.
 
