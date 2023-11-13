@@ -136,6 +136,10 @@ ls -l
 
 You should now see the numbers 1 to 10 printed to your screen on the cluster. Make sure that you are always running analyses on a compute node by allocating resources with `srun` or submitting a job to the scheduler with `sbatch`. You should now be able to log on to the cluster, find your way through directories and edit files, and submit jobs responsibly. A topic that will come up throughout the workshop is allocating the number of cpus correctly so that you get the benefits of working on a compute cluster.
 
+## Making software for the workshop available
+
+Instructions for making all necessary software available on the cluster are [here]({{site.baseurl}}/activities/pathconfiguration/).
+
 
 ## Some additional notes about scripts
 

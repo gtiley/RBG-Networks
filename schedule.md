@@ -28,7 +28,7 @@ Participation in the workshop is free, but participants must bring their own lap
 
 Instructions for making all necessary software available on the cluster are [here]({{site.baseurl}}/activities/pathconfiguration/).
 
-
+<!--
 ## RBG Kew
 
 | Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
@@ -62,36 +62,37 @@ Instructions for making all necessary software available on the cluster are [her
                                                  
 There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas](https://veganpalsusto.co.uk/). Coffee is provided by sift and participants can list their orders [here](https://docs.google.com/spreadsheets/d/1w2Og74QtfEfOF7GWEoRr36mL7OqaVrOEcp7emSrLZZo/edit?usp=drive_link). Participants are responsible for their own lunch but we will break at the Orangery every day at 12:00.
 
+-->
 
 ## RBG Edinburgh
 
 | Day   | Time           | Room                      | Topic                                                             | Slides                                                             |  Instructor         |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
-|14 Nov| 8:00-9:00       | Conference Room           | Command Line and HPC Primer (Optional)                            |  TBD                                                               | George Tiley        |
-|14 Nov| 9:00-10:15      | Conference Room           | Introduction to the Multispecies Coalescent Model                 |  TBD                                                               | Ziheng Yang         |
+|14 Nov| 8:00-9:00       | Conference Room           | Command Line and HPC Primer (Optional)                            |  [GitHub page]({{site.baseurl}}/activities/introduction/)                                                               | George Tiley        |
+|14 Nov| 9:00-10:15      | Conference Room           | Introduction to the Multispecies Coalescent Model                 |  [MSC Intro](https://github.com/gtiley/RBG-Networks/blob/gh-pages/slides/2023-MSC.pdf/)                                                               | Ziheng Yang         |
 |14 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
-|14 Nov| 10:45-12:00     | Conference Room           | Analyses of genomic data under the MSC with BPP                   |  TBD                                                               | Tomas Flouri        |
+|14 Nov| 10:45-12:00     | Conference Room           | Analyses of genomic data under the MSC with BPP                   |  [GitHub page](https://github.com/xflouris/bpp-tutorial-mare/wiki)                                                               | George Tiley        |
 |14 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
-|14 Nov| 13:00-15:00     | Conference Room           | Models of Gene Flow (introgression and migration)                 |  TBD                                                               | Ziheng Yang         |
+|14 Nov| 13:00-15:00     | Conference Room           | Models of Gene Flow (introgression and migration)                 |  [MSC with Gene Flow](https://github.com/gtiley/RBG-Networks/blob/gh-pages/slides/2023-MSC-geneflow.pdf/)                                                               | Ziheng Yang         |
 |14 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
-|14 Nov| 15:30-17:30     | Conference Room           | Analysis under the MSC-I and MSC-M models with BPP                |  TBD                                                               | Tomas Flouri        |
+|14 Nov| 15:30-17:30     | Conference Room           | Analysis under the MSC-I and MSC-M models with BPP                |  [GitHub](https://github.com/xflouris/bpp-tutorial-mare/wiki)                                                               | George Tiley        |
 |      |                 |                           |                                                                   |                                                                    |                     |
-|15 Nov| 9:00-10:15      | Conference Room           | Hypothesis Testing and Model Selection with Networks              |  TBD                                                               | George Tiley        |
+|15 Nov| 9:00-10:15      | Conference Room           | Hypothesis Testing and Model Selection with Networks              |  [Slides](https://github.com/gtiley/RBG-Networks/blob/gh-pages/slides/Network-Testing.pdf/)                                                               | George Tiley        |
 |15 Nov| 10:15-10:45     | Conference Room           | Break                                                             |                                                                    |                     |
-|15 Nov| 10:45-12:00     | Conference Room           | Bayes Factors and Approximate Methods                             |  TBD                                                               | George Tiley        |
+|15 Nov| 10:45-12:00     | Conference Room           | Bayes Factors and Approximate Methods                             |  [GitHub page]({{site.baseurl}}/activities/hypothesis_testing/)                                                               | George Tiley        |
 |15 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
-|15 Nov| 13:00-15:00     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|15 Nov| 13:00-15:00     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  [Github page](https://solislemuslab.github.io/snaq-tutorial/)                                                               | Claudia Solís-Lemus |
 |15 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
-|15 Nov| 15:30-17:30     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  TBD                                                               | Claudia Solís-Lemus |
+|15 Nov| 15:30-17:30     | Conference Room           | Quartets, Concordance Factors, and Network Identifiability        |  [Github page](https://solislemuslab.github.io/snaq-tutorial/)                                                               | Claudia Solís-Lemus |
 |      |                 |                           |                                                                   |                                                                    |                     |
-|16 Nov| 9:00-10:15      | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|16 Nov| 9:00-10:15      | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  [Github page](https://solislemuslab.github.io/snaq-tutorial/)                                                               | Claudia Solís-Lemus |
 |16 Nov| 10:15-10:45     | Lecture Theatre           | Break                                                             |                                                                    |                     |
-|16 Nov| 10:45-12:00     | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  TBD                                                               | Claudia Solís-Lemus |
+|16 Nov| 10:45-12:00     | Lecture Theatre           | Maximum Pseudo-Likelihood Analyses with PhyloNetworks             |  [Github page](https://solislemuslab.github.io/snaq-tutorial/)                                                               | Claudia Solís-Lemus |
 |16 Nov| 12:00-13:00     | Canteen                   | Lunch                                                             |                                                                    |                     |
-|16 Nov| 13:00-15:00     | Conference Room           | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
+|16 Nov| 13:00-15:00     | Conference Room           | Participant Data Analysis and Discussion                          |  Open Session                                                                | All                 |
 |16 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
-|16 Nov| 15:30-17:30     | Conference Room           | Participant Data Analysis and Discussion                          |  TBD                                                               | All                 |
-|16 Nov| 18:00           | TBD                       | Go to the pub                                                     |                                                                    | All                 |
+|16 Nov| 15:30-17:00     | Conference Room           | Participant Data Analysis and Discussion                          |  Open Session                                                               | All                 |
+|16 Nov| 19:30           | TBD                       | Go to the pub                                                     |  O'Connors                                                                  | All                 |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 
 Coffee and snacks are provided at breaks. Participants are responsible for their own lunch but we will break at the Canteen every day at 12:00.
