@@ -26,6 +26,7 @@ Participation in the workshop is free, but participants must bring their own lap
 |-----------|---------------------------------------------------|--------------------------------------------------------------------|
 -->
 
+### Important information for cluster users
 Instructions for making all necessary software available on the cluster are [here]({{site.baseurl}}/activities/pathconfiguration/).
 
 <!--
@@ -92,7 +93,7 @@ There are coffee or tea breaks at 10:15 and 15:00 every day with [vegan conchas]
 |16 Nov| 13:00-15:00     | Conference Room           | Participant Data Analysis and Discussion                          |  Open Session                                                                | All                 |
 |16 Nov| 15:00-15:30     | Conference Room           | Break                                                             |                                                                    |                     |
 |16 Nov| 15:30-17:00     | Conference Room           | Participant Data Analysis and Discussion                          |  Open Session                                                               | All                 |
-|16 Nov| 19:30           | TBD                       | Go to the pub                                                     |  O'Connors                                                                  | All                 |
+|16 Nov| 19:30           | O'Connors                       | Go to the pub                                                     |                                                               | All                 |
 |------|-----------------|---------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------|---------------------|
 
 Coffee and snacks are provided at breaks. Participants are responsible for their own lunch but we will break at the Canteen every day at 12:00.
